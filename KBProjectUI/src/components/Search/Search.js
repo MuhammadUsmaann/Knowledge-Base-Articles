@@ -39,7 +39,7 @@ class Search extends Component {
                                         <tbody>
                                             <tr>
                                                 <td>
-                                                    <h6><a target="_blank" href="fake_url">Bootstrap 4 Light &amp; Dark Admin with Free VueJs</a></h6>
+                                                    <h6><a target="_blank" href="#">Bootstrap 4 Light &amp; Dark Admin with Free VueJs</a></h6>
                                                     <span className="text-green font-13">https://themeforest.net/user/puffintheme</span>
                                                     <p className="mt-10 mb-0 text-muted">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
                                                 </td>
@@ -49,7 +49,7 @@ class Search extends Component {
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <h6><a target="_blank" href="fake_url">Bootstrap 4 Admin Dashboard Template</a></h6>
+                                                    <h6><a target="_blank" href="#">Bootstrap 4 Admin Dashboard Template</a></h6>
                                                     <span className="text-green font-13">https://themeforest.net/user/puffintheme</span>
                                                     <p className="mt-10 mb-0 text-muted">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour</p>
                                                 </td>
@@ -59,7 +59,7 @@ class Search extends Component {
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <h6><a target="_blank" href="fake_url">The ultimate Bootstrap 4 Admin Dashboard</a></h6>
+                                                    <h6><a target="_blank" href="#">The ultimate Bootstrap 4 Admin Dashboard</a></h6>
                                                     <span className="text-green font-13">https://themeforest.net/user/puffintheme</span>
                                                     <p className="mt-10 mb-0 text-muted">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
                                                 </td>
@@ -69,7 +69,7 @@ class Search extends Component {
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <h6><a target="_blank" href="fake_url">Bootstrap 4 Admin Dashboard Template</a></h6>
+                                                    <h6><a target="_blank" href="#">Bootstrap 4 Admin Dashboard Template</a></h6>
                                                     <span className="text-green font-13">https://themeforest.net/user/puffintheme</span>
                                                     <p className="mt-10 mb-0 text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
                                                 </td>
@@ -115,7 +115,7 @@ class Search extends Component {
                                                     <a href="/#" className="icon mr-3"><i className="fe fe-repeat" /></a>
                                                     <a href="/#" className="icon mr-3"><i className="fe fe-twitter" /> 24</a>
                                                     <a href="/#" className="icon mr-3"><i className="fe fe-heart" /> 43</a>
-                                                    <a href="fake_url" className="text-muted ml-auto">5 notes</a>
+                                                    <a href="#" className="text-muted ml-auto">5 notes</a>
                                                 </nav>
                                             </div>
                                         </article>
@@ -136,7 +136,7 @@ class Search extends Component {
                                                     <a href="/#" className="icon mr-3"><i className="fe fe-repeat" /></a>
                                                     <a href="/#" className="icon mr-3"><i className="fe fe-twitter" /> 24</a>
                                                     <a href="/#" className="icon mr-3"><i className="fe fe-heart" /> 43</a>
-                                                    <a href="fake_url" className="text-muted ml-auto">5 notes</a>
+                                                    <a href="#" className="text-muted ml-auto">5 notes</a>
                                                 </nav>
                                             </div>
                                         </article>
@@ -157,7 +157,7 @@ class Search extends Component {
                                                     <a href="/#" className="icon mr-3"><i className="fe fe-repeat" /></a>
                                                     <a href="/#" className="icon mr-3"><i className="fe fe-twitter" /> 24</a>
                                                     <a href="/#" className="icon mr-3"><i className="fe fe-heart" /> 43</a>
-                                                    <a href="fake_url" className="text-muted ml-auto">5 notes</a>
+                                                    <a href="#" className="text-muted ml-auto">5 notes</a>
                                                 </nav>
                                             </div>
                                         </article>
@@ -178,7 +178,7 @@ class Search extends Component {
                                                     <a href="/#" className="icon mr-3"><i className="fe fe-repeat" /></a>
                                                     <a href="/#" className="icon mr-3"><i className="fe fe-twitter" /> 24</a>
                                                     <a href="/#" className="icon mr-3"><i className="fe fe-heart" /> 43</a>
-                                                    <a href="fake_url" className="text-muted ml-auto">5 notes</a>
+                                                    <a href="#" className="text-muted ml-auto">5 notes</a>
                                                 </nav>
                                             </div>
                                         </article>
@@ -199,7 +199,7 @@ class Search extends Component {
                                                     <a href="/#" className="icon mr-3"><i className="fe fe-repeat" /></a>
                                                     <a href="/#" className="icon mr-3"><i className="fe fe-twitter" /> 24</a>
                                                     <a href="/#" className="icon mr-3"><i className="fe fe-heart" /> 43</a>
-                                                    <a href="fake_url" className="text-muted ml-auto">5 notes</a>
+                                                    <a href="#" className="text-muted ml-auto">5 notes</a>
                                                 </nav>
                                             </div>
                                         </article>
