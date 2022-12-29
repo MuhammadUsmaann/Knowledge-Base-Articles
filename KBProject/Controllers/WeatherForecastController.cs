@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using KBProject.Models;
+
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 using System;
