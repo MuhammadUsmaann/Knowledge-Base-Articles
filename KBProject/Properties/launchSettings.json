@@ -8,9 +8,7 @@
       "sslPort": 44345
     }
   },
-  "ConnectionStrings": {
-    "Connection": ""
-  },
+ 
   "profiles": {
     "IIS Express": {
       "commandName": "IISExpress",

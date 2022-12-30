@@ -1,4 +1,5 @@
-﻿using KBProject.Models;
+﻿using KBProject.Filters;
+using KBProject.Models;
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -12,6 +13,7 @@ namespace KBProject.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [TokenAuthenticationFilter]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]

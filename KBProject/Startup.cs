@@ -15,6 +15,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using KBProject.DBAccess;
+using KBProject.Repositories;
+using KBProject.Repositories.Interfaces;
+using KBProject.TokenAuthentication;
 
 namespace KBProject
 {
@@ -35,6 +39,18 @@ namespace KBProject
             {
                 c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             });
+
+
+            // Registering Service
+            services.Add(new ServiceDescriptor(typeof(IDBService), new DBService()));
+            services.AddSingleton<ITokenManager, TokenManager>();
+
+
+            // Scoped
+
+            services.AddScoped<IArticleRepository, ArticleRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+
 
             //JSON Serializer
 
