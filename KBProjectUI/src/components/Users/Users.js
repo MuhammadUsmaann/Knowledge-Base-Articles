@@ -80,7 +80,6 @@ class Users extends Component {
 														<tr>
 															<th className="w60">Name</th>
 															<th />
-															<th />
 															<th>Created Date</th>
 															<th>Role</th>
 															<th className="w100">Action</th>
@@ -102,9 +101,6 @@ class Users extends Component {
 																<h6 className="mb-0">Marshall Nichols</h6>
 																<span>marshall-n@gmail.com</span>
 															</td>
-															<td>
-																<span className="tag tag-danger">Super Admin</span>
-															</td>
 															<td>24 Jun, 2015</td>
 															<td>CEO and Founder</td>
 															<td />
@@ -124,9 +120,7 @@ class Users extends Component {
 																<h6 className="mb-0">Susie Willis</h6>
 																<span>sussie-w@gmail.com</span>
 															</td>
-															<td>
-																<span className="tag tag-info">Admin</span>
-															</td>
+															
 															<td>28 Jun, 2015</td>
 															<td>Team Lead</td>
 															<td>
@@ -162,9 +156,7 @@ class Users extends Component {
 																<h6 className="mb-0">Debra Stewart</h6>
 																<span>debra@gmail.com</span>
 															</td>
-															<td>
-																<span className="tag tag-default">Employee</span>
-															</td>
+															
 															<td>21 July, 2015</td>
 															<td>Team Lead</td>
 															<td>
@@ -200,9 +192,7 @@ class Users extends Component {
 																<h6 className="mb-0">Erin Gonzales</h6>
 																<span>Erinonzales@gmail.com</span>
 															</td>
-															<td>
-																<span className="tag tag-default">Employee</span>
-															</td>
+															
 															<td>21 July, 2015</td>
 															<td>Web Developer</td>
 															<td>
@@ -238,9 +228,7 @@ class Users extends Component {
 																<h6 className="mb-0">Susie Willis</h6>
 																<span>sussie-w@gmail.com</span>
 															</td>
-															<td>
-																<span className="tag tag-info">Admin</span>
-															</td>
+															
 															<td>28 Jun, 2015</td>
 															<td>Team Lead</td>
 															<td>
@@ -276,9 +264,7 @@ class Users extends Component {
 																<h6 className="mb-0">Debra Stewart</h6>
 																<span>debra@gmail.com</span>
 															</td>
-															<td>
-																<span className="tag tag-default">Employee</span>
-															</td>
+															
 															<td>21 July, 2015</td>
 															<td>Team Lead</td>
 															<td>
@@ -314,9 +300,7 @@ class Users extends Component {
 																<h6 className="mb-0">Erin Gonzales</h6>
 																<span>Erinonzales@gmail.com</span>
 															</td>
-															<td>
-																<span className="tag tag-default">Employee</span>
-															</td>
+															
 															<td>21 July, 2016</td>
 															<td>Web Developer</td>
 															<td>
@@ -352,9 +336,7 @@ class Users extends Component {
 																<h6 className="mb-0">Ava Alexander</h6>
 																<span>alexander@gmail.com</span>
 															</td>
-															<td>
-																<span className="tag tag-success">HR Admin</span>
-															</td>
+															
 															<td>21 July, 2016</td>
 															<td>HR</td>
 															<td>
@@ -390,9 +372,7 @@ class Users extends Component {
 																<h6 className="mb-0">Ava Alexander</h6>
 																<span>alexander@gmail.com</span>
 															</td>
-															<td>
-																<span className="tag tag-success">HR Admin</span>
-															</td>
+															
 															<td>21 July, 2019</td>
 															<td>HR</td>
 															<td>
@@ -423,15 +403,6 @@ class Users extends Component {
 									<div className="card">
 										<div className="card-body">
 											<div className="row clearfix">
-												<div className="col-lg-12 col-md-12 col-sm-12">
-													<div className="form-group">
-														<input
-															type="text"
-															className="form-control"
-															placeholder="Employee ID *"
-														/>
-													</div>
-												</div>
 												<div className="col-lg-6 col-md-6 col-sm-12">
 													<div className="form-group">
 														<input
@@ -472,242 +443,171 @@ class Users extends Component {
 													<div className="form-group">
 														<select className="form-control show-tick">
 															<option>Select Role Type</option>
-															<option>Super Admin</option>
-															<option>Admin</option>
-															<option>Employee</option>
+															<option>SME</option>
+															<option>Client</option>
 														</select>
-													</div>
-												</div>
-												<div className="col-md-4 col-sm-12">
-													<div className="form-group">
-														<input
-															type="text"
-															className="form-control"
-															placeholder="Username *"
-														/>
-													</div>
-												</div>
-												<div className="col-md-4 col-sm-12">
-													<div className="form-group">
-														<input
-															type="text"
-															className="form-control"
-															placeholder="Password"
-														/>
-													</div>
-												</div>
-												<div className="col-md-4 col-sm-12">
-													<div className="form-group">
-														<input
-															type="text"
-															className="form-control"
-															placeholder="Confirm Password"
-														/>
 													</div>
 												</div>
 												<div className="col-12">
 													<hr className="mt-4" />
-													<h6>Module Permission</h6>
-													<div className="table-responsive">
-														<table className="table table-striped">
-															<thead>
-																<tr>
-																	<th />
-																	<th>Read</th>
-																	<th>Write</th>
-																	<th>Delete</th>
-																</tr>
-															</thead>
-															<tbody>
-																<tr>
-																	<td>Super Admin</td>
-																	<td>
-																		<label className="custom-control custom-checkbox">
-																			<input
-																				type="checkbox"
-																				className="custom-control-input"
-																				name="example-checkbox1"
-																				defaultValue="option1"
-																				defaultChecked
-																			/>
-																			<span className="custom-control-label">
-																				&nbsp;
-																			</span>
-																		</label>
-																	</td>
-																	<td>
-																		<label className="custom-control custom-checkbox">
-																			<input
-																				type="checkbox"
-																				className="custom-control-input"
-																				name="example-checkbox1"
-																				defaultValue="option1"
-																				defaultChecked
-																			/>
-																			<span className="custom-control-label">
-																				&nbsp;
-																			</span>
-																		</label>
-																	</td>
-																	<td>
-																		<label className="custom-control custom-checkbox">
-																			<input
-																				type="checkbox"
-																				className="custom-control-input"
-																				name="example-checkbox1"
-																				defaultValue="option1"
-																				defaultChecked
-																			/>
-																			<span className="custom-control-label">
-																				&nbsp;
-																			</span>
-																		</label>
-																	</td>
-																</tr>
-																<tr>
-																	<td>Admin</td>
-																	<td>
-																		<label className="custom-control custom-checkbox">
-																			<input
-																				type="checkbox"
-																				className="custom-control-input"
-																				name="example-checkbox1"
-																				defaultValue="option1"
-																				defaultChecked
-																			/>
-																			<span className="custom-control-label">
-																				&nbsp;
-																			</span>
-																		</label>
-																	</td>
-																	<td>
-																		<label className="custom-control custom-checkbox">
-																			<input
-																				type="checkbox"
-																				className="custom-control-input"
-																				name="example-checkbox1"
-																				defaultValue="option1"
-																			/>
-																			<span className="custom-control-label">
-																				&nbsp;
-																			</span>
-																		</label>
-																	</td>
-																	<td>
-																		<label className="custom-control custom-checkbox">
-																			<input
-																				type="checkbox"
-																				className="custom-control-input"
-																				name="example-checkbox1"
-																				defaultValue="option1"
-																			/>
-																			<span className="custom-control-label">
-																				&nbsp;
-																			</span>
-																		</label>
-																	</td>
-																</tr>
-																<tr>
-																	<td>Employee</td>
-																	<td>
-																		<label className="custom-control custom-checkbox">
-																			<input
-																				type="checkbox"
-																				className="custom-control-input"
-																				name="example-checkbox1"
-																				defaultValue="option1"
-																				defaultChecked
-																			/>
-																			<span className="custom-control-label">
-																				&nbsp;
-																			</span>
-																		</label>
-																	</td>
-																	<td>
-																		<label className="custom-control custom-checkbox">
-																			<input
-																				type="checkbox"
-																				className="custom-control-input"
-																				name="example-checkbox1"
-																				defaultValue="option1"
-																			/>
-																			<span className="custom-control-label">
-																				&nbsp;
-																			</span>
-																		</label>
-																	</td>
-																	<td>
-																		<label className="custom-control custom-checkbox">
-																			<input
-																				type="checkbox"
-																				className="custom-control-input"
-																				name="example-checkbox1"
-																				defaultValue="option1"
-																			/>
-																			<span className="custom-control-label">
-																				&nbsp;
-																			</span>
-																		</label>
-																	</td>
-																</tr>
-																<tr>
-																	<td>HR Admin</td>
-																	<td>
-																		<label className="custom-control custom-checkbox">
-																			<input
-																				type="checkbox"
-																				className="custom-control-input"
-																				name="example-checkbox1"
-																				defaultValue="option1"
-																				defaultChecked
-																			/>
-																			<span className="custom-control-label">
-																				&nbsp;
-																			</span>
-																		</label>
-																	</td>
-																	<td>
-																		<label className="custom-control custom-checkbox">
-																			<input
-																				type="checkbox"
-																				className="custom-control-input"
-																				name="example-checkbox1"
-																				defaultValue="option1"
-																				defaultChecked
-																			/>
-																			<span className="custom-control-label">
-																				&nbsp;
-																			</span>
-																		</label>
-																	</td>
-																	<td>
-																		<label className="custom-control custom-checkbox">
-																			<input
-																				type="checkbox"
-																				className="custom-control-input"
-																				name="example-checkbox1"
-																				defaultValue="option1"
-																				defaultChecked
-																			/>
-																			<span className="custom-control-label">
-																				&nbsp;
-																			</span>
-																		</label>
-																	</td>
-																</tr>
-															</tbody>
-														</table>
+													<div class="row col-12 mt-2" style={{display: 'block'}}>
+														<h6 class="pull-left">Module Permission</h6>
+														<button class="btn btn-primary pull-right">Add Users</button>
 													</div>
+													
+													<div className="table-responsive">
+													<table className="table table-striped table-hover table-vcenter text-nowrap mb-0">
+														<thead>
+															<tr>
+																<th className="w60">Name</th>
+																<th />
+																<th>Created Articles</th>
+																<th className="w100">Action</th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td className="width45">
+																	<span
+																		className="avatar avatar-blue"
+																		data-toggle="tooltip"
+																		data-placement="top"
+																		data-original-title="Avatar Name"
+																	>
+																		NG
+																	</span>
+																</td>
+																<td>
+																	<h6 className="mb-0">Marshall Nichols</h6>
+																	<span>marshall-n@gmail.com</span>
+																</td>
+																<td>4</td>
+																
+																<td />
+															</tr>
+															<tr>
+																<td>
+																	<img
+																		src="../assets/images/xs/avatar1.jpg"
+																		data-toggle="tooltip"
+																		data-placement="top"
+																		alt="Avatar"
+																		className="avatar"
+																		data-original-title="Avatar Name"
+																	/>
+																</td>
+																<td>
+																	<h6 className="mb-0">Susie Willis</h6>
+																	<span>sussie-w@gmail.com</span>
+																</td>
+																
+																<td>4</td>
+																<td>
+																	<button
+																		type="button"
+																		className="btn btn-icon"
+																		title="Edit"
+																	>
+																		<i className="fa fa-edit" />
+																	</button>
+																	<button
+																		type="button"
+																		className="btn btn-icon js-sweetalert"
+																		title="Delete"
+																		data-type="confirm"
+																	>
+																		<i className="fa fa-trash-o text-danger" />
+																	</button>
+																</td>
+															</tr>
+															<tr>
+																<td>
+																	<img
+																		src="../assets/images/xs/avatar2.jpg"
+																		data-toggle="tooltip"
+																		data-placement="top"
+																		alt="Avatar"
+																		className="avatar"
+																		data-original-title="Avatar Name"
+																	/>
+																</td>
+																<td>
+																	<h6 className="mb-0">Debra Stewart</h6>
+																	<span>debra@gmail.com</span>
+																</td>
+																
+																<td>4</td>
+																<td>
+																	<button
+																		type="button"
+																		className="btn btn-icon"
+																		title="Edit"
+																	>
+																		<i className="fa fa-edit" />
+																	</button>
+																	<button
+																		type="button"
+																		className="btn btn-icon js-sweetalert"
+																		title="Delete"
+																		data-type="confirm"
+																	>
+																		<i className="fa fa-trash-o text-danger" />
+																	</button>
+																</td>
+															</tr>
+															<tr>
+																<td>
+																	<span
+																		className="avatar avatar-green"
+																		data-toggle="tooltip"
+																		data-placement="top"
+																		data-original-title="Avatar Name"
+																	>
+																		KH
+																	</span>
+																</td>
+																<td>
+																	<h6 className="mb-0">Erin Gonzales</h6>
+																	<span>Erinonzales@gmail.com</span>
+																</td>
+																
+																<td>4</td>
+																<td>
+																	<button
+																		type="button"
+																		className="btn btn-icon"
+																		title="Edit"
+																	>
+																		<i className="fa fa-edit" />
+																	</button>
+																	<button
+																		type="button"
+																		className="btn btn-icon js-sweetalert"
+																		title="Delete"
+																		data-type="confirm"
+																	>
+																		<i className="fa fa-trash-o text-danger" />
+																	</button>
+																</td>
+															</tr>
+															
+															
+														</tbody>
+													</table>
+												</div>
+												<div class="row col-12 mt-5">
 													<button type="button" className="btn btn-primary">
-														Add
-													</button>
-													<button
-														type="button"
-														className="btn btn-secondary"
-														data-dismiss="modal"
-													>
-														CLOSE
-													</button>
+															Save
+														</button>
+														<button
+															type="button"
+															className="btn btn-secondary ml-2"
+															data-dismiss="modal"
+														>
+															CLOSE
+														</button>
+												</div>
+													
 												</div>
 											</div>
 										</div>

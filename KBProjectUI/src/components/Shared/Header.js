@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route,
+    Link
+} from 'react-router-dom';
 
 class Header extends Component {
 	render() {
@@ -15,9 +21,22 @@ class Header extends Component {
 					<div className="container-fluid">
 						<div className="page-header">
 							<div className="left">
-								<h1 className="page-title">{this.props.dataFromSubParent}</h1>
+								<h1 className="page-title">KB-Articles :: {this.props.dataFromSubParent}</h1>
 							</div>
 							<div className="right">  
+							<ul className="nav nav-pills">
+									<li className="nav-item">
+										<Link to="/" class="nav-link"> <i class="icon-home"></i>  Home</Link>
+										
+									</li>
+									<li className="nav-item">
+										<Link to="/users" class="nav-link"> <i class="icon-user"></i> Users</Link>
+									</li>
+									<li className="nav-item">
+										<Link to="/articles" class="nav-link"> <i class="icon-briefcase"></i>  Articles</Link>
+										
+									</li>
+								</ul>
 								<div className="notification d-flex">
 									<div className="dropdown d-flex">
 										<a
@@ -31,9 +50,6 @@ class Header extends Component {
 											<NavLink to="/profile" className="dropdown-item">
 												<i className="dropdown-icon fe fe-user" /> Profile
 											</NavLink>
-											<a className="dropdown-item" >
-												<i className="dropdown-icon fe fe-settings" /> Settings
-											</a>
 											<NavLink to="/login" className="dropdown-item">
 												<i className="dropdown-icon fe fe-log-out" /> Sign out
 											</NavLink>

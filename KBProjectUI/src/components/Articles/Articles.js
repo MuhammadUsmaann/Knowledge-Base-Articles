@@ -145,20 +145,11 @@ class Articles extends Component {
 														<input
 															type="text"
 															className="form-control"
-															placeholder="AUthor"
+															placeholder="Tags"
 														/>
 													</div>
 												</div>
-												<div className="col-lg-6 col-md-6 col-sm-12">
-													<div className="form-group">
-														<input
-															type="Date"
-															className="form-control"
-															placeholder="Enter a Date"
-														/>
-													</div>
-												</div>
-
+												
 												<div className="col-12">
 													<Ckeditor></Ckeditor>
 												</div>

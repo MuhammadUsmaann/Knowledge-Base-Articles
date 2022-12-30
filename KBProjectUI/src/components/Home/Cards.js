@@ -60,7 +60,6 @@ class Card extends Component {
                             </div>
                         </div>
                     )}
-
                 </Popup>
             </>
         )

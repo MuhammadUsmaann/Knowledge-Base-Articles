@@ -214,33 +214,6 @@ class Menu extends Component {
 		return (
 			<>
 				<div className={`${istoggleLeftMenu ? "offcanvas-active" : ""}`}>
-					<div style={this.state.parentlink === 'login' ? masterNone : masterBlock}>
-						<div id="left-sidebar" className="sidebar ">
-							<h5 className="brand-name">KB Articles</h5>
-							<nav id="left-sidebar-nav" className="sidebar-nav">
-								<MetisMenu className=""
-									content={content}
-									noBuiltInClassNames={true}
-									classNameContainer={(e) => this.toggleSubMenu(e)}
-									classNameContainerVisible="in"
-									classNameItemActive="active"
-									classNameLinkActive="active"
-									// classNameItemHasActiveChild="active"
-									classNameItemHasVisibleChild="active"
-									classNameLink="has-arrow arrow-c"
-									// classNameIcon
-									// classNameStateIcon
-
-									iconNamePrefix=""
-									// iconNameStateHidden=""
-									LinkComponent={(e) => <DefaultLink itemProps={e} />}
-									toggleSubMenu={this.toggleSubMenu}
-								/>
-
-							</nav>
-						</div>
-					</div>
-
 					<div className="page">
 						
 						<Header dataFromParent={this.props.dataFromParent} dataFromSubParent={pageHeading[0].pageTitle} />
