@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import MetisMenu from 'react-metismenu';
-import { Switch, Route, NavLink } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import Header from '../Shared/Header';
 import Footer from '../Shared/Footer';
 import DefaultLink from './DefaultLink';
@@ -182,306 +182,39 @@ class Menu extends Component {
 		const content = [
 			{
 				"id": 'Directories',
-				"label": "Directories"
+				"label": "Directories",
+			},
+
+			{
+				"id": 3,
+				"label": "Home",
+				"to": "/",
+				"icon": "icon-home"
+
 			},
 			{
-				"id": 1,
-				"icon": "icon-rocket",
-				"label": "HRMS",
-				"to": "#!",
-				content: [
-					{
-						"id": 3,
-						"label": "Dashboard",
-						"to": "/"
-					},
-					{
-						"id": 4,
-						"label": "Users",
-						"to": "/hr-users"
-					},
-					{
-						"id": 5,
-						"label": "Department",
-						"to": "/hr-department"
-					},
-					{
-						"id": 6,
-						"label": "Employee",
-						"to": "/hr-employee"
-					},
-					{
-						"id": 7,
-						"label": "Activities",
-						"to": "/hr-activities"
-					},
-					{
-						"id": 8,
-						"label": "Holidays",
-						"to": "/hr-holidays"
-					},
-					{
-						"id": 9,
-						"label": "Events",
-						"to": "/hr-events"
-					},
-					{
-						"id": 10,
-						"label": "Payroll",
-						"to": "/hr-payroll"
-					},
-					{
-						"id": 11,
-						"label": "Accounts",
-						"to": "/hr-accounts"
-					},
-					{
-						"id": 12,
-						"label": "Report",
-						"to": "/hr-report"
-					}
-				]
+				"id": 4,
+				"label": "Users",
+				"to": "/users",
+				"icon": "icon-user"
 			},
 			{
-				"id": 13,
-				"icon": "icon-cup",
-				"label": "Project",
-				content: [
-					{
-						"id": 14,
-						"label": "Dashboard",
-						"to": "/project-dashboard"
-					},
-					{
-						"id": 15,
-						"label": "Project List",
-						"to": "/project-list"
-					},
-					{
-						"id": 16,
-						"label": "Taskboard",
-						"to": "/project-taskboard"
-					},
-					{
-						"id": 17,
-						"label": "Ticket List",
-						"to": "/project-ticket"
-					},
-					{
-						"id": 18,
-						"label": "Ticket Details",
-						"to": "/project-ticket-details"
-					},
-					{
-						"id": 19,
-						"label": "Clients",
-						"to": "/project-clients"
-					},
-					{
-						"id": 20,
-						"label": "Todo List",
-						"to": "/project-todo"
-					}
-				]
+				"id": 4,
+				"label": "Articles",
+				"to": "/articles",
+				"icon": "icon-briefcase"
+
 			},
-			{
-				"id": 21,
-				"icon": "icon-briefcase",
-				"label": "Job Portal",
-				content: [
-					{
-						"id": 22,
-						"label": "Job Dashboard",
-						"to": "/jobportal-dashboard"
-					},
-					{
-						"id": 23,
-						"label": "Positions",
-						"to": "/jobportal-positions"
-					},
-					{
-						"id": 24,
-						"label": "Applicant",
-						"to": "/jobportal-applicants"
-					},
-					{
-						"id": 25,
-						"label": "Resumes",
-						"to": "/jobportal-resumes"
-					},
-					{
-						"id": 26,
-						"label": "Settings",
-						"to": "/jobportal-settings"
-					}
-				]
-			},
-			{
-				"id": 27,
-				"icon": "icon-lock",
-				"label": "Authentication",
-				content: [
-					{
-						"id": 28,
-						"label": "Login",
-						"to": "/login"
-					},
-					{
-						"id": 29,
-						"label": "Register",
-						"to": "/signup"
-					},
-					{
-						"id": 30,
-						"label": "Forgot Password",
-						"to": "/forgotpassword"
-					},
-					{
-						"id": 31,
-						"label": "404 error",
-						"to": "/notfound"
-					},
-					{
-						"id": 32,
-						"label": "500 Error",
-						"to": "/internalserver"
-					}
-				]
-			},
-			{
-				"id": 'UiElements',
-				"label": "Ui Elements"
-			},
-			{
-				"id": 33,
-				"icon": "icon-tag",
-				"label": "Icons",
-				"to": "/icons",
-			},
-			{
-				"id": 34,
-				"icon": "icon-bar-chart",
-				"label": "Charts",
-				"to": "/charts",
-			},
-			{
-				"id": 35,
-				"icon": "icon-layers",
-				"label": "Forms",
-				"to": "/forms",
-			},
-			{
-				"id": 36,
-				"icon": "icon-tag",
-				"label": "Tables",
-				"to": "/tables",
-			},
-			{
-				"id": 37,
-				"icon": "icon-puzzle",
-				"label": "Widgets",
-				"to": "/widgets",
-			},
-			{
-				"id": 38,
-				"icon": "icon-map",
-				"label": "Maps",
-				"to": "/maps",
-			},
-			{
-				"id": 39,
-				"icon": "icon-picture",
-				"label": "Gallery",
-				"to": "/gallery",
-			},
+
 		];
 		const { isOpenRightSidebar, isOpenUserMenu } = this.state
 		const { darkMinSidebar, istoggleLeftMenu, friendListOpen, statisticsOpen, statisticsClose, friendListClose } = this.props
 		const pageHeading = Routes.filter((route) => route.path === this.props.location.pathname)
-		
+
 		return (
 			<>
 				<div className={`${istoggleLeftMenu ? "offcanvas-active" : ""}`}>
 					<div style={this.state.parentlink === 'login' ? masterNone : masterBlock}>
-						<div className="theme_div">
-							<div className="card">
-								<div className="card-body">
-									<ul className="list-group list-unstyled">
-										<li className="list-group-item mb-2">
-											<p>Default Theme</p>
-											<a href="../main/index.html">
-												<img
-													src="/assets/images/themes/default.png"
-													className="img-fluid"
-													alt="fake_url"
-												/>
-											</a>
-										</li>
-										<li className="list-group-item mb-2">
-											<p>Night Mode Theme</p>
-											<a href="../dark/index.html">
-												<img
-													src="/assets/images/themes/dark.png"
-													className="img-fluid"
-													alt="fake_url"
-												/>
-											</a>
-										</li>
-										<li className="list-group-item mb-2">
-											<p>RTL Version</p>
-											<a href="../rtl/index.html">
-												<img
-													src="/assets/images/themes/rtl.png"
-													className="img-fluid"
-													alt="fake_url"
-												/>
-											</a>
-										</li>
-										<li className="list-group-item mb-2">
-											<p>Theme Version2</p>
-											<a href="../theme2/index.html">
-												<img
-													src="/assets/images/themes/theme2.png"
-													className="img-fluid"
-													alt="fake_url"
-												/>
-											</a>
-										</li>
-										<li className="list-group-item mb-2">
-											<p>Theme Version3</p>
-											<a href="../theme3/index.html">
-												<img
-													src="/assets/images/themes/theme3.png"
-													className="img-fluid"
-													alt="fake_url"
-												/>
-											</a>
-										</li>
-										<li className="list-group-item mb-2">
-											<p>Theme Version4</p>
-											<a href="../theme4/index.html">
-												<img
-													src="/assets/images/themes/theme4.png"
-													className="img-fluid"
-													alt="fake_url"
-												/>
-											</a>
-										</li>
-										<li className="list-group-item mb-2">
-											<p>Horizontal Version</p>
-											<a href="../horizontal/index.html">
-												<img
-													src="/assets/images/themes/horizontal.png"
-													className="img-fluid"
-													alt="fake_url"
-												/>
-											</a>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						
 						<div id="left-sidebar" className="sidebar ">
 							<h5 className="brand-name">KB Articles</h5>
 							<nav id="left-sidebar-nav" className="sidebar-nav">
@@ -501,7 +234,7 @@ class Menu extends Component {
 									iconNamePrefix=""
 									// iconNameStateHidden=""
 									LinkComponent={(e) => <DefaultLink itemProps={e} />}
-								// toggleSubMenu={this.toggleSubMenu}
+									toggleSubMenu={this.toggleSubMenu}
 								/>
 
 							</nav>
@@ -509,192 +242,12 @@ class Menu extends Component {
 					</div>
 
 					<div className="page">
+						
 						<Header dataFromParent={this.props.dataFromParent} dataFromSubParent={pageHeading[0].pageTitle} />
 						<Switch>
 							{Routes.map((layout, i) => {
 								return <Route key={i} exact={layout.exact} path={layout.path} component={layout.component}></Route>
 							})}
-							{/* <Dashboard action={this.handler} dataFromParent={'dark'} /> */}
-							{/* <Route exact path="/hr-users" component={Users}>
-					</Route>
-					<Route exact path="/hr-department">
-						<Departments dataFromParent={'dark'} />
-					</Route>
-					<Route exact path="/hr-employee">
-						<Employee dataFromParent={'dark'} />
-					</Route>
-					<Route exact path="/hr-events">
-						<Events dataFromParent={'dark'} />
-					</Route>
-					<Route exact path="/hr-holidays">
-						<Holidays dataFromParent={'dark'} />
-					</Route>
-					<Route exact path="/hr-activities">
-						<Activities dataFromParent={'dark'} />
-					</Route>
-					<Route exact path="/hr-payroll">
-						<Payroll dataFromParent={'dark'} />
-					</Route>
-					<Route exact path="/hr-accounts">
-						<Accounts dataFromParent={'dark'} />
-					</Route>
-					<Route exact path="/hr-report">
-						<Report dataFromParent={'dark'} />
-					</Route>
-
-					<Route exact path="/project-dashboard">
-						<ProjectDashboard dataFromParent={'dark'} />
-					</Route>
-					<Route exact path="/project-list">
-						<ProjectList dataFromParent={'dark'} />
-					</Route>
-					<Route exact path="/project-taskboard">
-						<Taskboard dataFromParent={'dark'} />
-					</Route>
-					<Route exact path="/project-ticket">
-						<TicketList dataFromParent={'dark'} />
-					</Route>
-					<Route exact path="/project-ticket-details">
-						<TicketDetails dataFromParent={'dark'} />
-					</Route>
-					<Route exact path="/project-clients">
-						<Clients dataFromParent={'dark'} />
-					</Route>
-					<Route exact path="/project-todo">
-						<TodoList dataFromParent={'dark'} />
-					</Route>
-
-					<Route exact path="/jobportal-dashboard">
-						<JobPortalDashboard dataFromParent={'dark'} />
-					</Route>
-					<Route exact path="/jobportal-applicants">
-						<Applicants dataFromParent={'dark'} />
-					</Route>
-					<Route exact path="/jobportal-positions">
-						<Positions dataFromParent={'dark'} />
-					</Route>
-					<Route exact path="/jobportal-resumes">
-						<Resumes dataFromParent={'dark'} />
-					</Route>
-					<Route exact path="/jobportal-settings">
-						<Settings dataFromParent={'dark'} />
-					</Route>
-
-					<Route path="/login" component={Login} />
-					<Route path="/signup" component={SignUp} />
-					<Route path="/forgotpassword" component={ForgotPassword} />
-					<Route path="/notfound" component={NotFound} />
-					<Route path="/internalserver" component={InternalServer} />
-
-					<Route exact path="/icons">
-						<Icons dataFromParent={''} />
-					</Route>
-					<Route exact path="/icons-feather">
-						<IconsFeather dataFromParent={''} />
-					</Route>
-					<Route exact path="/icons-line">
-						<IconsLine dataFromParent={''} />
-					</Route>
-					<Route exact path="/icons-flag">
-						<IconsFlags dataFromParent={''} />
-					</Route>
-					<Route exact path="/icons-payments">
-						<IconsPayments dataFromParent={''} />
-					</Route>
-
-					<Route exact path="/charts">
-						<Charts dataFromParent={''} />
-					</Route>
-					<Route exact path="/charts-e">
-						<ChartsE dataFromParent={''} />
-					</Route>
-					<Route exact path="/charts-c3">
-						<ChartsC3 dataFromParent={''} />
-					</Route>
-					<Route exact path="/charts-knob">
-						<ChartsKnob dataFromParent={''} />
-					</Route>
-					<Route exact path="/charts-sparkline">
-						<ChartsSparkline dataFromParent={''} />
-					</Route>
-
-					<Route exact path="/forms">
-						<Forms dataFromParent={''} />
-					</Route>
-					<Route exact path="/form-advanced">
-						<FormAdvanced dataFromParent={''} />
-					</Route>
-					<Route exact path="/form-validation">
-						<FormValidation dataFromParent={''} />
-					</Route>
-					<Route exact path="/form-wizard">
-						<FormWizard dataFromParent={''} />
-					</Route>
-					<Route exact path="/form-summernote">
-						<FormSummernote dataFromParent={''} />
-					</Route>
-
-					<Route exact path="/gallery">
-						<Gallery dataFromParent={'dark'} />
-					</Route>
-					<Route exact path="/maps">
-						<Maps dataFromParent={'dark'} />
-					</Route> */}
-
-							{/* <Route exact path="/tables">
-						<Tables dataFromParent={''} />
-					</Route>
-					<Route exact path="/tables-datatable">
-						<DataTables dataFromParent={''} />
-					</Route>
-					<Route exact path="/tables-color">
-						<TablesColor dataFromParent={''} />
-					</Route>
-					<Route exact path="/tables-basic">
-						<TablesBasic dataFromParent={''} />
-					</Route>
-
-					<Route exact path="/widgets">
-						<Widgets dataFromParent={'dark'} />
-					</Route>
-					<Route exact path="/w-card">
-						<WCard dataFromParent={'dark'} />
-					</Route>
-					<Route exact path="/w-statistics">
-						<WStatistics dataFromParent={'dark'} />
-					</Route>
-					<Route exact path="/w-data">
-						<WData dataFromParent={'dark'} />
-					</Route>
-					<Route exact path="/w-social">
-						<WSocial dataFromParent={'dark'} />
-					</Route>
-					<Route exact path="/w-other">
-						<WOther dataFromParent={'dark'} />
-					</Route>
-
-					<Route exact path="/page-search">
-						<Search dataFromParent={''} />
-					</Route>
-					<Route exact path="/profile">
-						<Profile dataFromParent={'dark'} />
-					</Route>
-
-					<Route exact path="/app-calendar">
-						<AppCalender dataFromParent={'dark'} />
-					</Route>
-					<Route exact path="/app-contact">
-						<AppContact dataFromParent={'dark'} />
-					</Route>
-					<Route exact path="/app-chat">
-						<AppChart dataFromParent={'dark'} />
-					</Route>
-					<Route exact path="/app-filemanager">
-						<AppFileManager dataFromParent={'dark'} />
-					</Route>
-					<Route exact path="/app-setting">
-						<AppSetting dataFromParent={'dark'} />
-					</Route> */}
 						</Switch>
 						<Footer />
 					</div>

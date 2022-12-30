@@ -15,10 +15,10 @@ class Profile extends Component {
                                         <img className="card-profile-img" src="../assets/images/sm/avatar1.jpg" alt="fake_url" />
                                         <h4 className="mb-3">Sara Hopkins</h4>
                                         <ul className="social-links list-inline mb-3 mt-2">
-                                            <li className="list-inline-item"><a href="fake_url" title="Facebook" data-toggle="tooltip"><i className="fa fa-facebook" /></a></li>
-                                            <li className="list-inline-item"><a href="fake_url" title="Twitter" data-toggle="tooltip"><i className="fa fa-twitter" /></a></li>
-                                            <li className="list-inline-item"><a href="fake_url" title={1234567890} data-toggle="tooltip"><i className="fa fa-phone" /></a></li>
-                                            <li className="list-inline-item"><a href="fake_url" title="@skypename" data-toggle="tooltip"><i className="fa fa-skype" /></a></li>
+                                            <li className="list-inline-item"><a href="#" title="Facebook" data-toggle="tooltip"><i className="fa fa-facebook" /></a></li>
+                                            <li className="list-inline-item"><a href="#" title="Twitter" data-toggle="tooltip"><i className="fa fa-twitter" /></a></li>
+                                            <li className="list-inline-item"><a href="#" title={1234567890} data-toggle="tooltip"><i className="fa fa-phone" /></a></li>
+                                            <li className="list-inline-item"><a href="#" title="@skypename" data-toggle="tooltip"><i className="fa fa-skype" /></a></li>
                                         </ul>
                                         <p className="mb-4">Contrary to popular belief, Lorem Ipsum is not simply random text.<br /> It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
                                         <button className="btn btn-outline-primary btn-sm"><span className="fa fa-twitter" /> Follow</button>
@@ -56,16 +56,16 @@ class Profile extends Component {
                                                 <div className="card-options">
                                                     <a href="/#" className="card-options-fullscreen" data-toggle="card-fullscreen"><i className="fe fe-maximize" /></a>
                                                     <div className="item-action dropdown ml-2">
-                                                        <a href="fake_url" data-toggle="dropdown"><i className="fe fe-more-vertical" /></a>
+                                                        <a href="#" data-toggle="dropdown"><i className="fe fe-more-vertical" /></a>
                                                         <div className="dropdown-menu dropdown-menu-right">
-                                                            <a href="fake_url" className="dropdown-item"><i className="dropdown-icon fa fa-eye" /> View Details </a>
-                                                            <a href="fake_url" className="dropdown-item"><i className="dropdown-icon fa fa-share-alt" /> Share </a>
-                                                            <a href="fake_url" className="dropdown-item"><i className="dropdown-icon fa fa-cloud-download" /> Download</a>
+                                                            <a href="#" className="dropdown-item"><i className="dropdown-icon fa fa-eye" /> View Details </a>
+                                                            <a href="#" className="dropdown-item"><i className="dropdown-icon fa fa-share-alt" /> Share </a>
+                                                            <a href="#" className="dropdown-item"><i className="dropdown-icon fa fa-cloud-download" /> Download</a>
                                                             <div className="dropdown-divider" />
-                                                            <a href="fake_url" className="dropdown-item"><i className="dropdown-icon fa fa-copy" /> Copy to</a>
-                                                            <a href="fake_url" className="dropdown-item"><i className="dropdown-icon fa fa-folder" /> Move to</a>
-                                                            <a href="fake_url" className="dropdown-item"><i className="dropdown-icon fa fa-edit" /> Rename</a>
-                                                            <a href="fake_url" className="dropdown-item"><i className="dropdown-icon fa fa-trash" /> Delete</a>
+                                                            <a href="#" className="dropdown-item"><i className="dropdown-icon fa fa-copy" /> Copy to</a>
+                                                            <a href="#" className="dropdown-item"><i className="dropdown-icon fa fa-folder" /> Move to</a>
+                                                            <a href="#" className="dropdown-item"><i className="dropdown-icon fa fa-edit" /> Rename</a>
+                                                            <a href="#" className="dropdown-item"><i className="dropdown-icon fa fa-trash" /> Delete</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -84,16 +84,16 @@ class Profile extends Component {
                                                     <a href="/#" className="card-options-fullscreen" data-toggle="card-fullscreen"><i className="fe fe-maximize" /></a>
                                                     <a href="/#" className="card-options-remove" data-toggle="card-remove"><i className="fe fe-x" /></a>
                                                     <div className="item-action dropdown ml-2">
-                                                        <a href="fake_url" data-toggle="dropdown"><i className="fe fe-more-vertical" /></a>
+                                                        <a href="#" data-toggle="dropdown"><i className="fe fe-more-vertical" /></a>
                                                         <div className="dropdown-menu dropdown-menu-right">
-                                                            <a href="fake_url" className="dropdown-item"><i className="dropdown-icon fa fa-eye" /> View Details </a>
-                                                            <a href="fake_url" className="dropdown-item"><i className="dropdown-icon fa fa-share-alt" /> Share </a>
-                                                            <a href="fake_url" className="dropdown-item"><i className="dropdown-icon fa fa-cloud-download" /> Download</a>
+                                                            <a href="#" className="dropdown-item"><i className="dropdown-icon fa fa-eye" /> View Details </a>
+                                                            <a href="#" className="dropdown-item"><i className="dropdown-icon fa fa-share-alt" /> Share </a>
+                                                            <a href="#" className="dropdown-item"><i className="dropdown-icon fa fa-cloud-download" /> Download</a>
                                                             <div className="dropdown-divider" />
-                                                            <a href="fake_url" className="dropdown-item"><i className="dropdown-icon fa fa-copy" /> Copy to</a>
-                                                            <a href="fake_url" className="dropdown-item"><i className="dropdown-icon fa fa-folder" /> Move to</a>
-                                                            <a href="fake_url" className="dropdown-item"><i className="dropdown-icon fa fa-edit" /> Rename</a>
-                                                            <a href="fake_url" className="dropdown-item"><i className="dropdown-icon fa fa-trash" /> Delete</a>
+                                                            <a href="#" className="dropdown-item"><i className="dropdown-icon fa fa-copy" /> Copy to</a>
+                                                            <a href="#" className="dropdown-item"><i className="dropdown-icon fa fa-folder" /> Move to</a>
+                                                            <a href="#" className="dropdown-item"><i className="dropdown-icon fa fa-edit" /> Rename</a>
+                                                            <a href="#" className="dropdown-item"><i className="dropdown-icon fa fa-trash" /> Delete</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -203,16 +203,16 @@ class Profile extends Component {
                                                     <a href="/#" className="card-options-fullscreen" data-toggle="card-fullscreen"><i className="fe fe-maximize" /></a>
                                                     <a href="/#" className="card-options-remove" data-toggle="card-remove"><i className="fe fe-x" /></a>
                                                     <div className="item-action dropdown ml-2">
-                                                        <a href="fake_url" data-toggle="dropdown"><i className="fe fe-more-vertical" /></a>
+                                                        <a href="#" data-toggle="dropdown"><i className="fe fe-more-vertical" /></a>
                                                         <div className="dropdown-menu dropdown-menu-right">
-                                                            <a href="fake_url" className="dropdown-item"><i className="dropdown-icon fa fa-eye" /> View Details </a>
-                                                            <a href="fake_url" className="dropdown-item"><i className="dropdown-icon fa fa-share-alt" /> Share </a>
-                                                            <a href="fake_url" className="dropdown-item"><i className="dropdown-icon fa fa-cloud-download" /> Download</a>
+                                                            <a href="#" className="dropdown-item"><i className="dropdown-icon fa fa-eye" /> View Details </a>
+                                                            <a href="#" className="dropdown-item"><i className="dropdown-icon fa fa-share-alt" /> Share </a>
+                                                            <a href="#" className="dropdown-item"><i className="dropdown-icon fa fa-cloud-download" /> Download</a>
                                                             <div className="dropdown-divider" />
-                                                            <a href="fake_url" className="dropdown-item"><i className="dropdown-icon fa fa-copy" /> Copy to</a>
-                                                            <a href="fake_url" className="dropdown-item"><i className="dropdown-icon fa fa-folder" /> Move to</a>
-                                                            <a href="fake_url" className="dropdown-item"><i className="dropdown-icon fa fa-edit" /> Rename</a>
-                                                            <a href="fake_url" className="dropdown-item"><i className="dropdown-icon fa fa-trash" /> Delete</a>
+                                                            <a href="#" className="dropdown-item"><i className="dropdown-icon fa fa-copy" /> Copy to</a>
+                                                            <a href="#" className="dropdown-item"><i className="dropdown-icon fa fa-folder" /> Move to</a>
+                                                            <a href="#" className="dropdown-item"><i className="dropdown-icon fa fa-edit" /> Rename</a>
+                                                            <a href="#" className="dropdown-item"><i className="dropdown-icon fa fa-trash" /> Delete</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -334,7 +334,7 @@ class Profile extends Component {
                                                                 Aenean lacinia bibendum nulla sed consectetur. Vestibulum id ligula porta felis euismod semper. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras
                                                                 justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Cum sociis natoque penatibus et magnis dis parturient montes,
                                                                 nascetur ridiculus mus.
-                        </div>
+                                                            </div>
                                                             <ul className="media-list">
                                                                 <li className="media mt-4">
                                                                     <img className="media-object avatar mr-4" src="../assets/images/xs/avatar1.jpg" alt="fake_url" />
@@ -342,7 +342,7 @@ class Profile extends Component {
                                                                         <strong>Debra Beck: </strong>
                                                                         Donec id elit non mi porta gravida at eget metus. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Donec ullamcorper nulla non metus
                                                                         auctor fringilla. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Sed posuere consectetur est at lobortis.
-                            </div>
+                                                                    </div>
                                                                 </li>
                                                             </ul>
                                                         </div>
@@ -380,7 +380,7 @@ class Profile extends Component {
                                                             <div>
                                                                 Donec id elit non mi porta gravida at eget metus. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Cum sociis natoque penatibus et magnis dis
                                                                 parturient montes, nascetur ridiculus mus. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </li>
@@ -395,7 +395,7 @@ class Profile extends Component {
                                                             <div>
                                                                 Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Aenean eu leo quam. Pellentesque ornare sem lacinia quam
                                                                 venenatis vestibulum. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-                        </div>
+                                                            </div>
                                                             <ul className="media-list">
                                                                 <li className="media mt-4">
                                                                     <img className="media-object avatar mr-4" src="../assets/images/xs/avatar5.jpg" alt="fake_url" />
@@ -403,7 +403,7 @@ class Profile extends Component {
                                                                         <strong>Wayne Holland: </strong>
                                                                         Donec id elit non mi porta gravida at eget metus. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Donec ullamcorper nulla non metus
                                                                         auctor fringilla. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Sed posuere consectetur est at lobortis.
-                            </div>
+                                                                    </div>
                                                                 </li>
                                                             </ul>
                                                         </div>

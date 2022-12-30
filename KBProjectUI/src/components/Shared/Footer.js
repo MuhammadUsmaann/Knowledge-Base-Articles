@@ -12,20 +12,20 @@ export default class Footer extends Component {
 									<div className="col-md-6 col-sm-12">
 										Copyright © 2020{' '}
 										<a href="https://themeforest.net/user/puffintheme/portfolio">PuffinTheme</a>
-											.
-										</div>
+										.
+									</div>
 									<div className="col-md-6 col-sm-12 text-md-right">
 										<ul className="list-inline mb-0">
 											<li className="list-inline-item">
-												<a href="fake_url">Documentation</a>
+												<a href="#">Documentation</a>
 											</li>
 											<li className="list-inline-item">
-												<a href="fake_url">FAQ</a>
+												<a href="#">FAQ</a>
 											</li>
 											<li className="list-inline-item">
-												<a href="fake_url" className="btn btn-outline-primary btn-sm">
+												<a href="#" className="btn btn-outline-primary btn-sm">
 													Buy Now
-													</a>
+												</a>
 											</li>
 										</ul>
 									</div>

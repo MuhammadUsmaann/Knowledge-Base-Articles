@@ -16,6 +16,7 @@
 		"react-countup": "^4.3.3",
 		"react-datepicker": "^2.14.1",
 		"react-dom": "^16.12.0",
+		"react-draft-wysiwyg": "^1.15.0",
 		"react-metismenu": "^1.4.0",
 		"react-metismenu-router-link": "^2.1.0",
 		"react-redux": "^7.2.0",
@@ -23,6 +24,7 @@
 		"react-script-tag": "^1.1.2",
 		"react-scripts": "^3.4.0",
 		"react-simple-maps": "^2.0.0",
+		"reactjs-popup": "^2.0.5",
 		"redux": "^4.0.5",
 		"redux-thunk": "^2.3.0"
 	},

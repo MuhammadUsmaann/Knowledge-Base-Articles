@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import './App.css';
 import Layout from './components/Shared/Layout';
 import Login from './components/Authentication/login';
-import SignUp from './components/Authentication/signup';
 import ForgotPassword from './components/Authentication/forgotpassword';
 import NotFound from './components/Authentication/404';
 import InternalServer from './components/Authentication/500';
@@ -16,7 +15,6 @@ class App extends Component {
 			<div className={`${darkMode ? "dark-mode" : ""}${darkSidebar ? "sidebar_dark" : ""} ${iconColor ? "iconcolor" : ""} ${gradientColor ? "gradient" : ""} ${rtl ? "rtl" : ""} ${fontType ? fontType : ""}${boxLayout ? "boxlayout" : ""}`}>
 				<Router>
 					<Switch>
-						<Route path="/signup" component={SignUp} />
 						<Route path="/login" component={Login} />
 						<Route path="/forgotpassword" component={ForgotPassword} />
 						<Route path="/notfound" component={NotFound} />
@@ -26,12 +24,6 @@ class App extends Component {
 				</Router>
 			</div>
 		);
-		// let navHeader = this.state.visibility ? <Layout /> : <Login />;
-		// return (
-		//   <div>
-		//       {navHeader}
-		//   </div>
-		// )
 	}
 }
 const mapStateToProps = state => ({

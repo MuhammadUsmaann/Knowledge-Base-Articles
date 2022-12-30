@@ -63,7 +63,7 @@
             }
             .message{
                 @include max-screen($break-small - 1px) {
-                    width: calc(100% - 0);
+                    width: calc(100% );
                 }
             }
         }
