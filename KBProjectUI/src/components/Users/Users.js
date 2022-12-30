@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import AddUsers from './Addusers';
 
 
 class Users extends Component {
@@ -120,7 +121,7 @@ class Users extends Component {
 																<h6 className="mb-0">Susie Willis</h6>
 																<span>sussie-w@gmail.com</span>
 															</td>
-															
+
 															<td>28 Jun, 2015</td>
 															<td>Team Lead</td>
 															<td>
@@ -156,7 +157,7 @@ class Users extends Component {
 																<h6 className="mb-0">Debra Stewart</h6>
 																<span>debra@gmail.com</span>
 															</td>
-															
+
 															<td>21 July, 2015</td>
 															<td>Team Lead</td>
 															<td>
@@ -192,7 +193,7 @@ class Users extends Component {
 																<h6 className="mb-0">Erin Gonzales</h6>
 																<span>Erinonzales@gmail.com</span>
 															</td>
-															
+
 															<td>21 July, 2015</td>
 															<td>Web Developer</td>
 															<td>
@@ -228,7 +229,7 @@ class Users extends Component {
 																<h6 className="mb-0">Susie Willis</h6>
 																<span>sussie-w@gmail.com</span>
 															</td>
-															
+
 															<td>28 Jun, 2015</td>
 															<td>Team Lead</td>
 															<td>
@@ -264,7 +265,7 @@ class Users extends Component {
 																<h6 className="mb-0">Debra Stewart</h6>
 																<span>debra@gmail.com</span>
 															</td>
-															
+
 															<td>21 July, 2015</td>
 															<td>Team Lead</td>
 															<td>
@@ -300,7 +301,7 @@ class Users extends Component {
 																<h6 className="mb-0">Erin Gonzales</h6>
 																<span>Erinonzales@gmail.com</span>
 															</td>
-															
+
 															<td>21 July, 2016</td>
 															<td>Web Developer</td>
 															<td>
@@ -336,7 +337,7 @@ class Users extends Component {
 																<h6 className="mb-0">Ava Alexander</h6>
 																<span>alexander@gmail.com</span>
 															</td>
-															
+
 															<td>21 July, 2016</td>
 															<td>HR</td>
 															<td>
@@ -372,7 +373,7 @@ class Users extends Component {
 																<h6 className="mb-0">Ava Alexander</h6>
 																<span>alexander@gmail.com</span>
 															</td>
-															
+
 															<td>21 July, 2019</td>
 															<td>HR</td>
 															<td>
@@ -450,153 +451,153 @@ class Users extends Component {
 												</div>
 												<div className="col-12">
 													<hr className="mt-4" />
-													<div class="row col-12 mt-2" style={{display: 'block'}}>
+													<div class="row col-12 mt-2" style={{ display: 'block' }}>
 														<h6 class="pull-left">Module Permission</h6>
-														<button class="btn btn-primary pull-right">Add Users</button>
+														<AddUsers />
 													</div>
-													
+
 													<div className="table-responsive">
-													<table className="table table-striped table-hover table-vcenter text-nowrap mb-0">
-														<thead>
-															<tr>
-																<th className="w60">Name</th>
-																<th />
-																<th>Created Articles</th>
-																<th className="w100">Action</th>
-															</tr>
-														</thead>
-														<tbody>
-															<tr>
-																<td className="width45">
-																	<span
-																		className="avatar avatar-blue"
-																		data-toggle="tooltip"
-																		data-placement="top"
-																		data-original-title="Avatar Name"
-																	>
-																		NG
-																	</span>
-																</td>
-																<td>
-																	<h6 className="mb-0">Marshall Nichols</h6>
-																	<span>marshall-n@gmail.com</span>
-																</td>
-																<td>4</td>
-																
-																<td />
-															</tr>
-															<tr>
-																<td>
-																	<img
-																		src="../assets/images/xs/avatar1.jpg"
-																		data-toggle="tooltip"
-																		data-placement="top"
-																		alt="Avatar"
-																		className="avatar"
-																		data-original-title="Avatar Name"
-																	/>
-																</td>
-																<td>
-																	<h6 className="mb-0">Susie Willis</h6>
-																	<span>sussie-w@gmail.com</span>
-																</td>
-																
-																<td>4</td>
-																<td>
-																	<button
-																		type="button"
-																		className="btn btn-icon"
-																		title="Edit"
-																	>
-																		<i className="fa fa-edit" />
-																	</button>
-																	<button
-																		type="button"
-																		className="btn btn-icon js-sweetalert"
-																		title="Delete"
-																		data-type="confirm"
-																	>
-																		<i className="fa fa-trash-o text-danger" />
-																	</button>
-																</td>
-															</tr>
-															<tr>
-																<td>
-																	<img
-																		src="../assets/images/xs/avatar2.jpg"
-																		data-toggle="tooltip"
-																		data-placement="top"
-																		alt="Avatar"
-																		className="avatar"
-																		data-original-title="Avatar Name"
-																	/>
-																</td>
-																<td>
-																	<h6 className="mb-0">Debra Stewart</h6>
-																	<span>debra@gmail.com</span>
-																</td>
-																
-																<td>4</td>
-																<td>
-																	<button
-																		type="button"
-																		className="btn btn-icon"
-																		title="Edit"
-																	>
-																		<i className="fa fa-edit" />
-																	</button>
-																	<button
-																		type="button"
-																		className="btn btn-icon js-sweetalert"
-																		title="Delete"
-																		data-type="confirm"
-																	>
-																		<i className="fa fa-trash-o text-danger" />
-																	</button>
-																</td>
-															</tr>
-															<tr>
-																<td>
-																	<span
-																		className="avatar avatar-green"
-																		data-toggle="tooltip"
-																		data-placement="top"
-																		data-original-title="Avatar Name"
-																	>
-																		KH
-																	</span>
-																</td>
-																<td>
-																	<h6 className="mb-0">Erin Gonzales</h6>
-																	<span>Erinonzales@gmail.com</span>
-																</td>
-																
-																<td>4</td>
-																<td>
-																	<button
-																		type="button"
-																		className="btn btn-icon"
-																		title="Edit"
-																	>
-																		<i className="fa fa-edit" />
-																	</button>
-																	<button
-																		type="button"
-																		className="btn btn-icon js-sweetalert"
-																		title="Delete"
-																		data-type="confirm"
-																	>
-																		<i className="fa fa-trash-o text-danger" />
-																	</button>
-																</td>
-															</tr>
-															
-															
-														</tbody>
-													</table>
-												</div>
-												<div class="row col-12 mt-5">
-													<button type="button" className="btn btn-primary">
+														<table className="table table-striped table-hover table-vcenter text-nowrap mb-0">
+															<thead>
+																<tr>
+																	<th className="w60">Name</th>
+																	<th />
+																	<th>Created Articles</th>
+																	<th className="w100">Action</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td className="width45">
+																		<span
+																			className="avatar avatar-blue"
+																			data-toggle="tooltip"
+																			data-placement="top"
+																			data-original-title="Avatar Name"
+																		>
+																			NG
+																		</span>
+																	</td>
+																	<td>
+																		<h6 className="mb-0">Marshall Nichols</h6>
+																		<span>marshall-n@gmail.com</span>
+																	</td>
+																	<td>4</td>
+
+																	<td />
+																</tr>
+																<tr>
+																	<td>
+																		<img
+																			src="../assets/images/xs/avatar1.jpg"
+																			data-toggle="tooltip"
+																			data-placement="top"
+																			alt="Avatar"
+																			className="avatar"
+																			data-original-title="Avatar Name"
+																		/>
+																	</td>
+																	<td>
+																		<h6 className="mb-0">Susie Willis</h6>
+																		<span>sussie-w@gmail.com</span>
+																	</td>
+
+																	<td>4</td>
+																	<td>
+																		<button
+																			type="button"
+																			className="btn btn-icon"
+																			title="Edit"
+																		>
+																			<i className="fa fa-edit" />
+																		</button>
+																		<button
+																			type="button"
+																			className="btn btn-icon js-sweetalert"
+																			title="Delete"
+																			data-type="confirm"
+																		>
+																			<i className="fa fa-trash-o text-danger" />
+																		</button>
+																	</td>
+																</tr>
+																<tr>
+																	<td>
+																		<img
+																			src="../assets/images/xs/avatar2.jpg"
+																			data-toggle="tooltip"
+																			data-placement="top"
+																			alt="Avatar"
+																			className="avatar"
+																			data-original-title="Avatar Name"
+																		/>
+																	</td>
+																	<td>
+																		<h6 className="mb-0">Debra Stewart</h6>
+																		<span>debra@gmail.com</span>
+																	</td>
+
+																	<td>4</td>
+																	<td>
+																		<button
+																			type="button"
+																			className="btn btn-icon"
+																			title="Edit"
+																		>
+																			<i className="fa fa-edit" />
+																		</button>
+																		<button
+																			type="button"
+																			className="btn btn-icon js-sweetalert"
+																			title="Delete"
+																			data-type="confirm"
+																		>
+																			<i className="fa fa-trash-o text-danger" />
+																		</button>
+																	</td>
+																</tr>
+																<tr>
+																	<td>
+																		<span
+																			className="avatar avatar-green"
+																			data-toggle="tooltip"
+																			data-placement="top"
+																			data-original-title="Avatar Name"
+																		>
+																			KH
+																		</span>
+																	</td>
+																	<td>
+																		<h6 className="mb-0">Erin Gonzales</h6>
+																		<span>Erinonzales@gmail.com</span>
+																	</td>
+
+																	<td>4</td>
+																	<td>
+																		<button
+																			type="button"
+																			className="btn btn-icon"
+																			title="Edit"
+																		>
+																			<i className="fa fa-edit" />
+																		</button>
+																		<button
+																			type="button"
+																			className="btn btn-icon js-sweetalert"
+																			title="Delete"
+																			data-type="confirm"
+																		>
+																			<i className="fa fa-trash-o text-danger" />
+																		</button>
+																	</td>
+																</tr>
+
+
+															</tbody>
+														</table>
+													</div>
+													<div class="row col-12 mt-5">
+														<button type="button" className="btn btn-primary">
 															Save
 														</button>
 														<button
@@ -606,8 +607,8 @@ class Users extends Component {
 														>
 															CLOSE
 														</button>
-												</div>
-													
+													</div>
+
 												</div>
 											</div>
 										</div>

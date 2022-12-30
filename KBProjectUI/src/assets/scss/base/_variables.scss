@@ -8,23 +8,23 @@ $enable-grid-classes: true;
 $enable-print-styles: true;
 
 // Fonts
-$font-family-opensans:      'Open Sans', sans-serif;
-$font-family-montserrat: 	'Montserrat', sans-serif;
-$font-family-roboto: 		'Robot', sans-serif;
+$font-family-opensans: 'Open Sans', sans-serif;
+$font-family-montserrat: 'Montserrat', sans-serif;
+$font-family-roboto: 'Robot', sans-serif;
 $font-size: 15px;
 
 
-$lightgray:             #E6E9ED;
-$mediumgray:            #AAB2BD;
-$darkgray:              #434A54;
+$lightgray: #E6E9ED;
+$mediumgray: #AAB2BD;
+$darkgray: #434A54;
 
 // color
-$body-color:            #f4f6f9;
-$font-color:            $darkgray;
-$card-color:            $white;
-$link-color:            #6290d0;
-$link-hover:            #0E9BE2;
-$body-bg:               #f5f7fb;
+$body-color: #f4f6f9;
+$font-color: $darkgray;
+$card-color: $white;
+$link-color: #6290d0;
+$link-hover: #0E9BE2;
+$body-bg: #f5f7fb;
 
 $headings-margin-bottom: .66em;
 $headings-font-family: inherit;
@@ -52,23 +52,24 @@ $border-color: rgba(0, 40, 100, .12);
 $border-color-dark: rgba(0, 40, 100, .24);
 
 // Border Radius
-$border-radius-extra-small:     0.125rem    !default;
-$border-radius-small:           0.1875rem   !default;
-$border-radius-large:           0.550rem     !default;
-$border-radius-extreme:         0.875rem    !default;
+$border-radius-extra-small: 0.125rem !default;
+$border-radius-small: 0.1875rem !default;
+$border-radius-large: 0.550rem !default;
+$border-radius-extreme: 0.875rem !default;
 
 
-$sidebar-width: 			280px;
-$sidebar-icon: 			    60px;
+$sidebar-width: 280px;
+$sidebar-icon: 60px;
 
 // Breakpoints
-$break-xsmall: 			640px;
-$break-small: 			768px;
-$break-medium: 			992px;
-$break-1024: 			1024px;
-$break-large: 			1200px;
-$break-1280: 			1280px;
-$break-xlarge: 			1440px;
+$break-menubtn: 576px;
+$break-xsmall: 640px;
+$break-small: 768px;
+$break-medium: 992px;
+$break-1024: 1024px;
+$break-large: 1200px;
+$break-1280: 1280px;
+$break-xlarge: 1440px;
 
 // Spacing
 $spacer: 1rem;
@@ -120,7 +121,263 @@ $zindex-tooltip: 1070;
 $hr-border-color: $border-color;
 
 // Icons flags
-$flag-icons: ('ad', 'ae', 'af', 'ag', 'ai', 'al', 'am', 'ao', 'aq', 'ar', 'as', 'at', 'au', 'aw', 'ax', 'az', 'ba', 'bb', 'bd', 'be', 'bf', 'bg', 'bh', 'bi', 'bj', 'bl', 'bm', 'bn', 'bo', 'bq', 'br', 'bs', 'bt', 'bv', 'bw', 'by', 'bz', 'ca', 'cc', 'cd', 'cf', 'cg', 'ch', 'ci', 'ck', 'cl', 'cm', 'cn', 'co', 'cr', 'cu', 'cv', 'cw', 'cx', 'cy', 'cz', 'de', 'dj', 'dk', 'dm', 'do', 'dz', 'ec', 'ee', 'eg', 'eh', 'er', 'es', 'et', 'eu', 'fi', 'fj', 'fk', 'fm', 'fo', 'fr', 'ga', 'gb-eng', 'gb-nir', 'gb-sct', 'gb-wls', 'gb', 'gd', 'ge', 'gf', 'gg', 'gh', 'gi', 'gl', 'gm', 'gn', 'gp', 'gq', 'gr', 'gs', 'gt', 'gu', 'gw', 'gy', 'hk', 'hm', 'hn', 'hr', 'ht', 'hu', 'id', 'ie', 'il', 'im', 'in', 'io', 'iq', 'ir', 'is', 'it', 'je', 'jm', 'jo', 'jp', 'ke', 'kg', 'kh', 'ki', 'km', 'kn', 'kp', 'kr', 'kw', 'ky', 'kz', 'la', 'lb', 'lc', 'li', 'lk', 'lr', 'ls', 'lt', 'lu', 'lv', 'ly', 'ma', 'mc', 'md', 'me', 'mf', 'mg', 'mh', 'mk', 'ml', 'mm', 'mn', 'mo', 'mp', 'mq', 'mr', 'ms', 'mt', 'mu', 'mv', 'mw', 'mx', 'my', 'mz', 'na', 'nc', 'ne', 'nf', 'ng', 'ni', 'nl', 'no', 'np', 'nr', 'nu', 'nz', 'om', 'pa', 'pe', 'pf', 'pg', 'ph', 'pk', 'pl', 'pm', 'pn', 'pr', 'ps', 'pt', 'pw', 'py', 'qa', 're', 'ro', 'rs', 'ru', 'rw', 'sa', 'sb', 'sc', 'sd', 'se', 'sg', 'sh', 'si', 'sj', 'sk', 'sl', 'sm', 'sn', 'so', 'sr', 'ss', 'st', 'sv', 'sx', 'sy', 'sz', 'tc', 'td', 'tf', 'tg', 'th', 'tj', 'tk', 'tl', 'tm', 'tn', 'to', 'tr', 'tt', 'tv', 'tw', 'tz', 'ua', 'ug', 'um', 'un', 'us', 'uy', 'uz', 'va', 'vc', 've', 'vg', 'vi', 'vn', 'vu', 'wf', 'ws', 'ye', 'yt', 'za', 'zm', 'zw');
+$flag-icons: (
+	'ad',
+	'ae',
+	'af',
+	'ag',
+	'ai',
+	'al',
+	'am',
+	'ao',
+	'aq',
+	'ar',
+	'as',
+	'at',
+	'au',
+	'aw',
+	'ax',
+	'az',
+	'ba',
+	'bb',
+	'bd',
+	'be',
+	'bf',
+	'bg',
+	'bh',
+	'bi',
+	'bj',
+	'bl',
+	'bm',
+	'bn',
+	'bo',
+	'bq',
+	'br',
+	'bs',
+	'bt',
+	'bv',
+	'bw',
+	'by',
+	'bz',
+	'ca',
+	'cc',
+	'cd',
+	'cf',
+	'cg',
+	'ch',
+	'ci',
+	'ck',
+	'cl',
+	'cm',
+	'cn',
+	'co',
+	'cr',
+	'cu',
+	'cv',
+	'cw',
+	'cx',
+	'cy',
+	'cz',
+	'de',
+	'dj',
+	'dk',
+	'dm',
+	'do',
+	'dz',
+	'ec',
+	'ee',
+	'eg',
+	'eh',
+	'er',
+	'es',
+	'et',
+	'eu',
+	'fi',
+	'fj',
+	'fk',
+	'fm',
+	'fo',
+	'fr',
+	'ga',
+	'gb-eng',
+	'gb-nir',
+	'gb-sct',
+	'gb-wls',
+	'gb',
+	'gd',
+	'ge',
+	'gf',
+	'gg',
+	'gh',
+	'gi',
+	'gl',
+	'gm',
+	'gn',
+	'gp',
+	'gq',
+	'gr',
+	'gs',
+	'gt',
+	'gu',
+	'gw',
+	'gy',
+	'hk',
+	'hm',
+	'hn',
+	'hr',
+	'ht',
+	'hu',
+	'id',
+	'ie',
+	'il',
+	'im',
+	'in',
+	'io',
+	'iq',
+	'ir',
+	'is',
+	'it',
+	'je',
+	'jm',
+	'jo',
+	'jp',
+	'ke',
+	'kg',
+	'kh',
+	'ki',
+	'km',
+	'kn',
+	'kp',
+	'kr',
+	'kw',
+	'ky',
+	'kz',
+	'la',
+	'lb',
+	'lc',
+	'li',
+	'lk',
+	'lr',
+	'ls',
+	'lt',
+	'lu',
+	'lv',
+	'ly',
+	'ma',
+	'mc',
+	'md',
+	'me',
+	'mf',
+	'mg',
+	'mh',
+	'mk',
+	'ml',
+	'mm',
+	'mn',
+	'mo',
+	'mp',
+	'mq',
+	'mr',
+	'ms',
+	'mt',
+	'mu',
+	'mv',
+	'mw',
+	'mx',
+	'my',
+	'mz',
+	'na',
+	'nc',
+	'ne',
+	'nf',
+	'ng',
+	'ni',
+	'nl',
+	'no',
+	'np',
+	'nr',
+	'nu',
+	'nz',
+	'om',
+	'pa',
+	'pe',
+	'pf',
+	'pg',
+	'ph',
+	'pk',
+	'pl',
+	'pm',
+	'pn',
+	'pr',
+	'ps',
+	'pt',
+	'pw',
+	'py',
+	'qa',
+	're',
+	'ro',
+	'rs',
+	'ru',
+	'rw',
+	'sa',
+	'sb',
+	'sc',
+	'sd',
+	'se',
+	'sg',
+	'sh',
+	'si',
+	'sj',
+	'sk',
+	'sl',
+	'sm',
+	'sn',
+	'so',
+	'sr',
+	'ss',
+	'st',
+	'sv',
+	'sx',
+	'sy',
+	'sz',
+	'tc',
+	'td',
+	'tf',
+	'tg',
+	'th',
+	'tj',
+	'tk',
+	'tl',
+	'tm',
+	'tn',
+	'to',
+	'tr',
+	'tt',
+	'tv',
+	'tw',
+	'tz',
+	'ua',
+	'ug',
+	'um',
+	'un',
+	'us',
+	'uy',
+	'uz',
+	'va',
+	'vc',
+	've',
+	'vg',
+	'vi',
+	'vn',
+	'vu',
+	'wf',
+	'ws',
+	'ye',
+	'yt',
+	'za',
+	'zm',
+	'zw'
+);
 
 // Thumbnails
 $thumbnail-bg: $white;

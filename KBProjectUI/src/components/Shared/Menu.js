@@ -179,44 +179,15 @@ class Menu extends Component {
 	}
 
 	render() {
-		const content = [
-			{
-				"id": 'Directories',
-				"label": "Directories",
-			},
 
-			{
-				"id": 3,
-				"label": "Home",
-				"to": "/",
-				"icon": "icon-home"
-
-			},
-			{
-				"id": 4,
-				"label": "Users",
-				"to": "/users",
-				"icon": "icon-user"
-			},
-			{
-				"id": 4,
-				"label": "Articles",
-				"to": "/articles",
-				"icon": "icon-briefcase"
-
-			},
-
-		];
-		const { isOpenRightSidebar, isOpenUserMenu } = this.state
-		const { darkMinSidebar, istoggleLeftMenu, friendListOpen, statisticsOpen, statisticsClose, friendListClose } = this.props
+		const { istoggleLeftMenu } = this.props
 		const pageHeading = Routes.filter((route) => route.path === this.props.location.pathname)
 
 		return (
 			<>
 				<div className={`${istoggleLeftMenu ? "offcanvas-active" : ""}`}>
 					<div className="page">
-						
-						<Header dataFromParent={this.props.dataFromParent} dataFromSubParent={pageHeading[0].pageTitle} />
+						<Header />
 						<Switch>
 							{Routes.map((layout, i) => {
 								return <Route key={i} exact={layout.exact} path={layout.path} component={layout.component}></Route>
