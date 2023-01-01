@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
+
 
 class Header extends Component {
 	render() {

@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import MetisMenu from 'react-metismenu';
 import { Switch, Route } from 'react-router-dom';
 import Header from '../Shared/Header';
 import Footer from '../Shared/Footer';
-import DefaultLink from './DefaultLink';
 
 
 import {
@@ -20,13 +18,6 @@ import {
 import Routes from '../Route';
 
 
-const masterNone = {
-	display: 'none',
-};
-
-const masterBlock = {
-	display: 'block',
-};
 
 class Menu extends Component {
 	constructor(props) {
@@ -181,7 +172,7 @@ class Menu extends Component {
 	render() {
 
 		const { istoggleLeftMenu } = this.props
-		const pageHeading = Routes.filter((route) => route.path === this.props.location.pathname)
+		// const pageHeading = Routes.filter((route) => route.path === this.props.location.pathname)
 
 		return (
 			<>

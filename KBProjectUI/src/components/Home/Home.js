@@ -1,9 +1,52 @@
-import React, { Component } from 'react'
+import React, { Component,useState, useEffect, useCallback, useRef, useMemo } from 'react'
 import { connect } from 'react-redux';
 import list from './CardList'
 import Card from './Cards';
+import Tags from "@yaireo/tagify/dist/react.tagify" 
+import "@yaireo/tagify/dist/tagify.css"
 
+const baseTagifySettings = {
+	blacklist: ["xxx", "yyy", "zzz"],
+	maxTags: 6,
+	//backspace: "edit",
+	placeholder: "type something",
+	dropdown: {
+	  enabled: 0 // a;ways show suggestions dropdown
+	}
+  }
 class Home extends Component {
+	// const [tagifySettings, setTagifySettings] = useState([]);
+	// const [tagifyProps, setTagifyProps] = useState({});
+
+	
+	constructor(props) {
+        super(props);
+
+        baseTagifySettings.callbacks = {
+            add     : this.onTagifyAdd,
+            remove  : this.onTagifyRemove,
+            input   : this.onTagifyInput,
+            invalid : this.onTagifyInvalid
+        }
+    }
+
+    componentDidMount(){}
+
+	onTagifyAdd = e => {
+        console.log('added:', e.detail);
+    }
+
+    onTagifyRemove = e => {
+        console.log('remove:', e.detail);
+    }
+
+    onTagifyInput = e => {
+        console.log('input:', e.detail);
+    }
+
+    onTagifyInvalid = e => {
+        console.log('invalid:', e.detail);
+    }
 	render() {
 		const { fixNavbar } = this.props;
 		return (
@@ -18,6 +61,17 @@ class Home extends Component {
 											<div className="col-lg-5 col-md-4 col-sm-6">
 												<div className="input-group">
 													<input type="text" className="form-control" placeholder="Search" />
+												</div>
+											</div>
+											<div className="col-lg-5 col-md-4 col-sm-6">
+												<div className="input-group">
+													<Tags
+														tagifyRef={tagifyRef} // optional Ref object for the Tagify instance itself, to get access to  inner-methods
+														settings={baseTagifySettings}  // tagify settings object
+														defaultValue="a,b,c"
+														{...tagifyProps}   // dynamic props such as "loading", "showDropdown:'abc'", "value"
+														onChange={onChange}
+														/>
 												</div>
 											</div>
 											<div className="col-lg-3 col-md-4 col-sm-12">
