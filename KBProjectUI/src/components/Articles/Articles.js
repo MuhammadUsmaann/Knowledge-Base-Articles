@@ -1,14 +1,36 @@
 import React, { Component } from 'react';
 import articleList from './ArticleList';
-import Ckeditor from '../common/ckeditor'
+import Ckeditor from '../common/ckeditor';
+import Tags from '@yaireo/tagify/dist/react.tagify';
+import "@yaireo/tagify/dist/tagify.css";
 
+const baseTagifySettings = {
+	defaultValue: [""],
+	maxTags: 10,
+	//backspace: "edit",
+	placeholder: "Enter Tags",
+	dropdown: {
+	  enabled: 0 // always show suggestions dropdown
+	},
+	showFilteredDropdown: "a",
+  }
 
 class Articles extends Component {
 
 	constructor(props) {
 		super(props);
 		this.state = {
-			datalist: articleList
+			datalist: articleList,
+			tagifyProps : [
+				"aaa",
+				"aaa1",
+				"aaa2",
+				"aaa3",
+				"bbb1",
+				"bbb2",
+				"bbb3",
+				"bbb4"
+			  ]
 		}
 	}
 	deletehandle(id) {
@@ -131,7 +153,7 @@ class Articles extends Component {
 									<div className="card">
 										<div className="card-body">
 											<div className="row clearfix">
-												<div className="col-lg-12 col-md-12 col-sm-12">
+												<div className="col-lg-6 col-md-6 col-sm-12">
 													<div className="form-group">
 														<input
 															type="text"
@@ -142,10 +164,22 @@ class Articles extends Component {
 												</div>
 												<div className="col-lg-6 col-md-6 col-sm-12">
 													<div className="form-group">
-														<input
-															type="text"
-															className="form-control"
-															placeholder="Tags"
+														<Tags
+															settings={baseTagifySettings}
+															autoFocus={true}
+															{...this.state.tagifyProps}
+															//onChange={onChange}
+															// onEditInput={() => console.log("onEditInput")}
+															// onEditBeforeUpdate={() => console.log`onEditBeforeUpdate`}
+															// onEditUpdated={() => console.log("onEditUpdated")}
+															// onEditStart={() => console.log("onEditStart")}
+															// onEditKeydown={() => console.log("onEditKeydown")}
+															// onDropdownShow={() => console.log("onDropdownShow")}
+															// onDropdownHide={() => console.log("onDropdownHide")}
+															// onDropdownSelect={() => console.log("onDropdownSelect")}
+															// onDropdownScroll={() => console.log("onDropdownScroll")}
+															// onDropdownNoMatch={() => console.log("onDropdownNoMatch")}
+															// onDropdownUpdated={() => console.log("onDropdownUpdated")}
 														/>
 													</div>
 												</div>

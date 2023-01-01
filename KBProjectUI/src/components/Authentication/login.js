@@ -49,9 +49,6 @@ export default class Login extends Component {
 							</a>
 						</div>
 					</div>
-					<div className="text-center text-muted">
-						Don't have account yet? <Link to="/signup">Sign Up</Link>
-					</div>
 				</div>
 			</div>
 		);

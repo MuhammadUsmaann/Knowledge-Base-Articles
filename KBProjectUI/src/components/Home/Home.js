@@ -2,52 +2,44 @@ import React, { Component,useState, useEffect, useCallback, useRef, useMemo } fr
 import { connect } from 'react-redux';
 import list from './CardList'
 import Card from './Cards';
-import Tags from "@yaireo/tagify/dist/react.tagify" 
+
+//import Tags from './tagify/react.tagify'
+import Tags from '@yaireo/tagify/dist/react.tagify'
 import "@yaireo/tagify/dist/tagify.css"
 
-
 const baseTagifySettings = {
-	blacklist: ["xxx", "yyy", "zzz"],
-	maxTags: 6,
+	defaultValue: [""],
+	maxTags: 10,
 	//backspace: "edit",
-	placeholder: "type something",
+	placeholder: "Enter Tags",
 	dropdown: {
-	  enabled: 0 // a;ways show suggestions dropdown
-	}
+	  enabled: 0 // always show suggestions dropdown
+	},
+	showFilteredDropdown: "a",
   }
-class Home extends Component {
-	// const [tagifySettings, setTagifySettings] = useState([]);
-	// const [tagifyProps, setTagifyProps] = useState({});
 
-	
+class Home extends Component {
 	constructor(props) {
         super(props);
+		this.state = {
+			tagifyProps : [
+				"aaa",
+				"aaa1",
+				"aaa2",
+				"aaa3",
+				"bbb1",
+				"bbb2",
+				"bbb3",
+				"bbb4"
+			  ]
+		}
+	}
+	
+	componentDidMount(){
 
-        baseTagifySettings.callbacks = {
-            add     : this.onTagifyAdd,
-            remove  : this.onTagifyRemove,
-            input   : this.onTagifyInput,
-            invalid : this.onTagifyInvalid
-        }
-    }
+		
+	}
 
-    componentDidMount(){}
-
-	onTagifyAdd = e => {
-        console.log('added:', e.detail);
-    }
-
-    onTagifyRemove = e => {
-        console.log('remove:', e.detail);
-    }
-
-    onTagifyInput = e => {
-        console.log('input:', e.detail);
-    }
-
-    onTagifyInvalid = e => {
-        console.log('invalid:', e.detail);
-    }
 	render() {
 		const { fixNavbar } = this.props;
 		return (
@@ -64,15 +56,26 @@ class Home extends Component {
 													<input type="text" className="form-control" placeholder="Search" />
 												</div>
 											</div>
-											<div className="col-lg-5 col-md-4 col-sm-6">
+											<div className="col-lg-6 col-md-6 col-sm-6">
 												<div className="input-group">
-													{/* <Tags
-														tagifyRef={tagifyRef} // optional Ref object for the Tagify instance itself, to get access to  inner-methods
-														settings={baseTagifySettings}  // tagify settings object
-														defaultValue="a,b,c"
-														{...tagifyProps}   // dynamic props such as "loading", "showDropdown:'abc'", "value"
-														onChange={onChange}
-														/> */}
+												<Tags
+													// tagifyRef={tagifyRef1}
+													settings={baseTagifySettings}
+													autoFocus={true}
+													{...this.state.tagifyProps}
+													//onChange={onChange}
+													// onEditInput={() => console.log("onEditInput")}
+													// onEditBeforeUpdate={() => console.log`onEditBeforeUpdate`}
+													// onEditUpdated={() => console.log("onEditUpdated")}
+													// onEditStart={() => console.log("onEditStart")}
+													// onEditKeydown={() => console.log("onEditKeydown")}
+													// onDropdownShow={() => console.log("onDropdownShow")}
+													// onDropdownHide={() => console.log("onDropdownHide")}
+													// onDropdownSelect={() => console.log("onDropdownSelect")}
+													// onDropdownScroll={() => console.log("onDropdownScroll")}
+													// onDropdownNoMatch={() => console.log("onDropdownNoMatch")}
+													// onDropdownUpdated={() => console.log("onDropdownUpdated")}
+												/>
 												</div>
 											</div>
 											<div className="col-lg-3 col-md-4 col-sm-12">

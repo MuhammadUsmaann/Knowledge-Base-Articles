@@ -1,7 +1,7 @@
 import Home from './Home/Home';
 import Users from './Users/Users';
 import Articles from './Articles/Articles';
-
+import Profile from './Profile/Profile';
 const HeaderRoutes = [
     {
         path: "/",
@@ -23,6 +23,13 @@ const HeaderRoutes = [
         exact: true,
         pageTitle: "Articles",
         component: Articles
+    },
+    {
+        path: "/profile",
+        name: 'profile',
+        exact: true,
+        pageTitle: "Profile",
+        component: Profile
     }
 ];
 
