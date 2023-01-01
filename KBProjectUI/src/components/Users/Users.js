@@ -9,7 +9,9 @@ class Users extends Component {
 		this.state = {
 			datalist: ['']
 		}
+		debugger
 	}
+	
 	deletehandle(id) {
 		this.setState({
 			datalist: this.state.datalist.filter(obj => {

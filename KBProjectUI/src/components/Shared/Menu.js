@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Switch, Route } from 'react-router-dom';
+import { Routes , Route } from 'react-router-dom';
 import Header from '../Shared/Header';
 import Footer from '../Shared/Footer';
 
-
+import Home from '../Home/Home';
+import Users from '../Users/Users';
+import Articles from '../Articles/Articles';
+import HeaderRoutes from '../Route'
 import {
 	darkModeAction, darkHeaderAction, fixNavbarAction,
 	darkMinSidebarAction, darkSidebarAction, iconColorAction,
@@ -15,75 +18,28 @@ import {
 	statisticsAction, friendListAction,
 	statisticsCloseAction, friendListCloseAction, toggleLeftMenuAction
 } from '../../actions/settingsAction';
-import Routes from '../Route';
+
 
 
 
 class Menu extends Component {
 	constructor(props) {
 		super(props);
-		this.toggleLeftMenu = this.toggleLeftMenu.bind(this);
 		this.toggleUserMenu = this.toggleUserMenu.bind(this);
-		this.toggleRightSidebar = this.toggleRightSidebar.bind(this);
-		this.toggleSubMenu = this.toggleSubMenu.bind(this);
-		this.handleDarkMode = this.handleDarkMode.bind(this);
-		this.handleFixNavbar = this.handleFixNavbar.bind(this);
-		this.handleDarkHeader = this.handleDarkHeader.bind(this);
-		this.handleMinSidebar = this.handleMinSidebar.bind(this);
-		this.handleSidebar = this.handleSidebar.bind(this);
-		this.handleIconColor = this.handleIconColor.bind(this);
-		this.handleGradientColor = this.handleGradientColor.bind(this);
-		this.handleRtl = this.handleRtl.bind(this);
-		this.handleFont = this.handleFont.bind(this);
 		this.handleStatistics = this.handleStatistics.bind(this);
-		this.handleFriendList = this.handleFriendList.bind(this);
-		this.closeFriendList = this.closeFriendList.bind(this);
-		this.closeStatistics = this.closeStatistics.bind(this);
-		this.handleBoxLayout = this.handleBoxLayout.bind(this);
 		this.handler = this.handler.bind(this);
 		this.state = {
-			isToggleLeftMenu: false,
-			isOpenUserMenu: false,
-			isOpenRightSidebar: false,
-			isBoxLayout: false,
 			parentlink: null,
 			childlink: null,
 		};
 	}
 
 	componentDidMount() {
-		const { location } = this.props;
-		const links = location.pathname.substring(1).split(/-(.+)/);
-		const parentlink = links[0];
-		const nochildlink = links[1];
-
-		if (parentlink && nochildlink && nochildlink === 'dashboard') {
-			this.handler(parentlink, `${parentlink}${nochildlink}`);
-		} else if (parentlink && nochildlink && nochildlink !== 'dashboard') {
-			this.handler(parentlink, nochildlink);
-		} else if (parentlink) {
-			this.handler(parentlink, '');
-		} else {
-			this.handler('hr', 'dashboard');
-		}
+		
 	}
 
 	componentDidUpdate(prevprops, prevstate) {
-		const { location } = this.props;
-		const links = location.pathname.substring(1).split(/-(.+)/);
-		const parentlink = links[0];
-		const nochildlink = links[1];
-		if (prevprops.location !== location) {
-			if (parentlink && nochildlink && nochildlink === 'dashboard') {
-				this.handler(parentlink, `${parentlink}${nochildlink}`);
-			} else if (parentlink && nochildlink && nochildlink !== 'dashboard') {
-				this.handler(parentlink, nochildlink);
-			} else if (parentlink) {
-				this.handler(parentlink, '');
-			} else {
-				this.handler('hr', 'dashboard');
-			}
-		}
+		
 	}
 
 	handler(parentlink, nochildlink) {
@@ -142,7 +98,6 @@ class Menu extends Component {
 		this.props.boxLayoutAction(e.target.checked)
 	}
 	toggleLeftMenu(e) {
-		console.log(e, 'asdasdada')
 		this.props.toggleLeftMenuAction(e)
 	}
 	toggleRightSidebar() {
@@ -172,18 +127,20 @@ class Menu extends Component {
 	render() {
 
 		const { istoggleLeftMenu } = this.props
-		// const pageHeading = Routes.filter((route) => route.path === this.props.location.pathname)
-
+		//  const pageHeading = Routes.filter((route) => route.path === this.props.location.pathname)
 		return (
 			<>
 				<div className={`${istoggleLeftMenu ? "offcanvas-active" : ""}`}>
 					<div className="page">
 						<Header />
-						<Switch>
-							{Routes.map((layout, i) => {
-								return <Route key={i} exact={layout.exact} path={layout.path} component={layout.component}></Route>
+						<Routes >
+							{HeaderRoutes.map((layout, i) => {
+								return <Route key={i} exact={layout.exact} path={layout.path} element={<layout.component />}></Route>
 							})}
-						</Switch>
+							{/* <Route key={3} path="/users" element={<Users />} />
+							<Route key={7} path="/articles" element={<Articles />} />
+							<Route key={8} path="/" element={<Home />} /> */}
+						</Routes >
 						<Footer />
 					</div>
 				</div>

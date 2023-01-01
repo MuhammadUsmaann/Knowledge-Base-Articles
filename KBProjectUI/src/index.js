@@ -1,18 +1,37 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+
+import { createRoot  } from 'react-dom/client';
 import { Provider } from 'react-redux'
-import configureStore from './store';
+import {store} from './store';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 // import registerServiceWorker from './registerServiceWorker';
+import { BrowserRouter } from "react-router-dom";
 
-ReactDOM.render(
-    <Provider store={configureStore()}>
-        <App />
-    </Provider>,
-    document.getElementById('root')
-);
+
+// ReactDOM.createRoot(document.getElementById("root")).render(
+//     <React.StrictMode>
+//       <BrowserRouter>
+//         <App />
+//       </BrowserRouter>
+//     </React.StrictMode>
+//   );
+
+const rootElement  = document.getElementById('root');
+const root = createRoot(rootElement); // createRoot(container!) if you use TypeScript
+
+console.log(store);
+root.render(<Provider store={store}> <BrowserRouter>
+<App />
+</BrowserRouter></Provider>);
+
+// createRoot.render(
+//     <Provider store={configureStore()}>
+//         <App />
+//     </Provider>
+//     ,
+//     document.getElementById('root')
+// );
 // registerServiceWorker();
 // ReactDOM.render(<App />, document.getElementById('root'));
 

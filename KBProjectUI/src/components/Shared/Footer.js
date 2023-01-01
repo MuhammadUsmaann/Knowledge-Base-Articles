@@ -11,7 +11,7 @@ export default class Footer extends Component {
 								<div className="row">
 									<div className="col-md-6 col-sm-12">
 										Copyright © 2023{' '}
-										<a href="https://www.eze2travel.com/">Eze2Travel</a>
+										{/* <a href="https://www.eze2travel.com/">Eze2Travel</a> */}
 										.
 									</div>
 								</div>

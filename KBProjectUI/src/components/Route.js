@@ -2,7 +2,7 @@ import Home from './Home/Home';
 import Users from './Users/Users';
 import Articles from './Articles/Articles';
 
-const Routes = [
+const HeaderRoutes = [
     {
         path: "/",
         name: 'dashboard',
@@ -26,4 +26,4 @@ const Routes = [
     }
 ];
 
-export default Routes;
+export default HeaderRoutes;

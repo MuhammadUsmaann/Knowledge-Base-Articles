@@ -6,3 +6,5 @@
 /KBProject/.vs/KBProject
 /KBProject/bin/Debug/net7.0
 /KBProject/obj
+/KBProjectUI/node_modules
+/KBProjectUI/build

@@ -6,22 +6,21 @@ import Login from './components/Authentication/login';
 import ForgotPassword from './components/Authentication/forgotpassword';
 import NotFound from './components/Authentication/404';
 import InternalServer from './components/Authentication/500';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 class App extends Component {
 	render() {
 		const { darkMode, boxLayout, darkSidebar, iconColor, gradientColor, rtl, fontType } = this.props
 		return (
 			<div className={`${darkMode ? "dark-mode" : ""}${darkSidebar ? "sidebar_dark" : ""} ${iconColor ? "iconcolor" : ""} ${gradientColor ? "gradient" : ""} ${rtl ? "rtl" : ""} ${fontType ? fontType : ""}${boxLayout ? "boxlayout" : ""}`}>
-				<Router>
-					<Switch>
-						<Route path="/login" component={Login} />
-						<Route path="/forgotpassword" component={ForgotPassword} />
-						<Route path="/notfound" component={NotFound} />
-						<Route path="/internalserver" component={InternalServer} />
-						<Route component={Layout} />
-					</Switch>
-				</Router>
+				<Routes >
+					<Route path="/login" element={<Login />} />
+					<Route path="/forgotpassword" element={<ForgotPassword />} />
+					<Route path="/notfound" element={<NotFound />} />
+					<Route path="/internalserver" element={<InternalServer />} />
+					<Route path="*" element={<Layout {...this.props}/>} />
+				</Routes >
+
 			</div>
 		);
 	}
