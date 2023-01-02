@@ -20,7 +20,7 @@ import { BrowserRouter } from "react-router-dom";
 const rootElement  = document.getElementById('root');
 const root = createRoot(rootElement); // createRoot(container!) if you use TypeScript
 
-console.log(store);
+
 root.render(<Provider store={store}> <BrowserRouter>
 <App />
 </BrowserRouter></Provider>);

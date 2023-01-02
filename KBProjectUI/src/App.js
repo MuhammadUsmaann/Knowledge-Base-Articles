@@ -6,19 +6,34 @@ import Login from './components/Authentication/login';
 import ForgotPassword from './components/Authentication/forgotpassword';
 import NotFound from './components/Authentication/404';
 import InternalServer from './components/Authentication/500';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import { getTokenFromLocalStorage } from './lib/common';
 
 class App extends Component {
+
 	render() {
+
+		let token  = getTokenFromLocalStorage();
+		const ProtectedRoute = ({ token, children }) => {
+		if (!token) {
+			return <Navigate to="/login" replace />;
+		}
+
+		return children;
+		};
 		const { darkMode, boxLayout, darkSidebar, iconColor, gradientColor, rtl, fontType } = this.props
 		return (
 			<div className={`${darkMode ? "dark-mode" : ""}${darkSidebar ? "sidebar_dark" : ""} ${iconColor ? "iconcolor" : ""} ${gradientColor ? "gradient" : ""} ${rtl ? "rtl" : ""} ${fontType ? fontType : ""}${boxLayout ? "boxlayout" : ""}`}>
 				<Routes >
-					<Route path="/login" element={<Login />} />
+					<Route path="/login" element={<Login {...this.props}/>} />
 					<Route path="/forgotpassword" element={<ForgotPassword />} />
 					<Route path="/notfound" element={<NotFound />} />
 					<Route path="/internalserver" element={<InternalServer />} />
-					<Route path="*" element={<Layout {...this.props}/>} />
+					<Route path="*" element={
+					 	<ProtectedRoute token={token}>
+					 		<Layout {...this.props}/>
+				   		</ProtectedRoute>
+					} />
 				</Routes >
 
 			</div>
@@ -33,7 +48,8 @@ const mapStateToProps = state => ({
 	rtl: state.settings.isRtl,
 	fontType: state.settings.isFont,
 	boxLayout: state.settings.isBoxLayout
-})
+});
+
 
 const mapDispatchToProps = dispatch => ({})
 export default connect(mapStateToProps, mapDispatchToProps)(App)

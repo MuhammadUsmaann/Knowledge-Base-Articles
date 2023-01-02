@@ -1,4 +1,4 @@
-import React, { Component,useState, useEffect, useCallback, useRef, useMemo } from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import list from './CardList'
 import Card from './Cards';
@@ -13,16 +13,16 @@ const baseTagifySettings = {
 	//backspace: "edit",
 	placeholder: "Enter Tags",
 	dropdown: {
-	  enabled: 0 // always show suggestions dropdown
+		enabled: 0 // always show suggestions dropdown
 	},
 	showFilteredDropdown: "a",
-  }
+}
 
 class Home extends Component {
 	constructor(props) {
-        super(props);
+		super(props);
 		this.state = {
-			tagifyProps : [
+			tagifyProps: [
 				"aaa",
 				"aaa1",
 				"aaa2",
@@ -31,13 +31,13 @@ class Home extends Component {
 				"bbb2",
 				"bbb3",
 				"bbb4"
-			  ]
+			]
 		}
 	}
-	
-	componentDidMount(){
 
-		
+	componentDidMount() {
+
+
 	}
 
 	render() {
@@ -58,11 +58,11 @@ class Home extends Component {
 											</div>
 											<div className="col-lg-6 col-md-6 col-sm-6">
 												<div className="input-group">
-												<Tags
-													// tagifyRef={tagifyRef1}
-													settings={baseTagifySettings}
-													autoFocus={true}
-													{...this.state.tagifyProps}
+													<Tags
+														// tagifyRef={tagifyRef1}
+														settings={baseTagifySettings}
+														autoFocus={true}
+														{...this.state.tagifyProps}
 													//onChange={onChange}
 													// onEditInput={() => console.log("onEditInput")}
 													// onEditBeforeUpdate={() => console.log`onEditBeforeUpdate`}
@@ -75,7 +75,7 @@ class Home extends Component {
 													// onDropdownScroll={() => console.log("onDropdownScroll")}
 													// onDropdownNoMatch={() => console.log("onDropdownNoMatch")}
 													// onDropdownUpdated={() => console.log("onDropdownUpdated")}
-												/>
+													/>
 												</div>
 											</div>
 											<div className="col-lg-3 col-md-4 col-sm-12">

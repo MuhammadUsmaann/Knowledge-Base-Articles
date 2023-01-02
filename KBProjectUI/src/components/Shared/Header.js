@@ -1,11 +1,24 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { removeTokenInLocalStorage, withRouter } from '../../lib/common';
+import { APP_ROUTES } from '../../lib/constants';
 
 
 class Header extends Component {
+	
 	render() {
 		const { fixNavbar, darkHeader } = this.props;
+
+		const handleLogout = async () => {
+			try {
+				removeTokenInLocalStorage();
+				this.props.router.navigate(APP_ROUTES.SIGN_IN)
+			}
+			catch (err) {
+				
+			}
+		};
+
 		return (
 			<>
 				<div
@@ -42,9 +55,9 @@ class Header extends Component {
 												<i className="dropdown-icon fe fe-user" /> Profile
 											</NavLink>										</li>
 										<li className="nav-item d-block d-sm-none">
-											<NavLink to="/login" className="">
+											<span onClick={handleLogout} className="">
 												<i className="dropdown-icon fe fe-log-out" /> Sign out
-											</NavLink>										</li>
+											</span>										</li>
 									</ul>
 									<ul className="nav nav-pills">
 
@@ -65,9 +78,9 @@ class Header extends Component {
 											<NavLink to="/profile" className="dropdown-item">
 												<i className="dropdown-icon fe fe-user" /> Profile
 											</NavLink>
-											<NavLink to="/login" className="dropdown-item">
+											<span onClick={handleLogout} className="dropdown-item">
 												<i className="dropdown-icon fe fe-log-out" /> Sign out
-											</NavLink>
+											</span>
 										</div>
 									</div>
 								</div>
@@ -81,5 +94,4 @@ class Header extends Component {
 }
 
 
-const mapDispatchToProps = dispatch => ({})
-export default connect(mapDispatchToProps)(Header);
+export default withRouter(Header);

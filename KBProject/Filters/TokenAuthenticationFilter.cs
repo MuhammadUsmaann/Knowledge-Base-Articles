@@ -12,7 +12,7 @@ namespace KBProject.Filters
     {
         public void OnAuthorization(AuthorizationFilterContext context)
         {
-            var tokenManager = (ITokenManager)context.HttpContext.RequestServices.GetService(typeof(ITokenManager));
+            var tokenManager = (IAuthenticationService)context.HttpContext.RequestServices.GetService(typeof(IAuthenticationService));
             var result = true;
             if (!context.HttpContext.Request.Headers.ContainsKey("Authorization"))
                 result = false;

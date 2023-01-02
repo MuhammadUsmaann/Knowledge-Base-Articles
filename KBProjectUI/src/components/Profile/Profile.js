@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 
 class Profile extends Component {
     render() {
-        const { fixNavbar } = this.props;
         return (
             <>
                 <div className="section-body  py-4">

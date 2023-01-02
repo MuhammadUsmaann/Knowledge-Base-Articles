@@ -19,6 +19,8 @@ using KBProject.DBAccess;
 using KBProject.Repositories;
 using KBProject.Repositories.Interfaces;
 using KBProject.TokenAuthentication;
+using JWTTokenPOC.Helper;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace KBProject
 {
@@ -40,14 +42,18 @@ namespace KBProject
                 c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             });
 
+            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
 
             // Registering Service
             services.Add(new ServiceDescriptor(typeof(IDBService), new DBService()));
-            services.AddSingleton<ITokenManager, TokenManager>();
+
+
+            //   services.AddSingleton<ITokenManager, TokenManager>();
 
 
             // Scoped
 
+            services.AddScoped<IAuthenticationService, AuthenticationService>();
             services.AddScoped<IArticleRepository, ArticleRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
 
@@ -60,22 +66,31 @@ namespace KBProject
 
             services.AddControllers();
         }
-
+        
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
+            app.UseRouting();
+
             app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                //app.UseSwagger();
+                //app.UseSwaggerUI();
             }
+
 
             app.UseHttpsRedirection();
 
-            app.UseRouting();
+
+            // Custom jwt auth middleware to authenticate the token
+            app.UseMiddleware<JwtMiddleware>();
 
             app.UseAuthorization();
+
 
             app.UseEndpoints(endpoints =>
             {

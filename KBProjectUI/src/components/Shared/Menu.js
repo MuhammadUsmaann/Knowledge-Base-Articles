@@ -4,9 +4,7 @@ import { Routes , Route } from 'react-router-dom';
 import Header from '../Shared/Header';
 import Footer from '../Shared/Footer';
 
-import Home from '../Home/Home';
-import Users from '../Users/Users';
-import Articles from '../Articles/Articles';
+
 import HeaderRoutes from '../Route'
 import {
 	darkModeAction, darkHeaderAction, fixNavbarAction,

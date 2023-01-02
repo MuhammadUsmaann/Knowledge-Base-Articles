@@ -9,34 +9,30 @@ using System;
 using KBProject.Repositories.Interfaces;
 using System.Threading.Tasks;
 using KBProject.TokenAuthentication;
+using System.Reflection;
 
 namespace KBProject.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class AuthController : ControllerBase
     {
-        private readonly ITokenManager _tokenManager;
-        private IUserRepository _userRepository;
-        public AuthController(IUserRepository userRepository, ITokenManager tokenManager ) {
-            _userRepository = userRepository;
-            _tokenManager = tokenManager;
-            
+        private readonly IAuthenticationService _authenticationService;
+        public AuthController(IAuthenticationService authenticationService)
+        {
+            _authenticationService = authenticationService;
         }
 
 
-        [HttpGet]
-        public async Task<ResponseObject<Token>> Autherize(string userName, string password)
+        [HttpPost]
+        public async Task<ResponseObject<AuthenticateResponse>> Autherize([FromBody] AuthenticateRequest authenticate)
         {
-            var result = await _tokenManager.Authenticate(userName, password);
-            if (result != null)
-            {
-                return new ResponseObject<Token> { Message = "Logged in successfully!", Result = _tokenManager.NewToken(result.Username, result.Role), Success = true };
-            }
-            else
-            {
-                return new ResponseObject<Token> { Message = "You are not unauthorized!", Result = null, Success = false };
-            }
+            var response = _authenticationService.Authenticate(authenticate);
+
+            if (response == null)
+                return new ResponseObject<AuthenticateResponse> { Message = "Username or Password is invalid", Result = null, Success = false };
+
+            return new ResponseObject<AuthenticateResponse> { Message = "Successfully logged in.", Success = true, Result = response };
         }
     }
 }
