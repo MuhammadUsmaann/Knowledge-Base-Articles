@@ -8,10 +8,11 @@ namespace KBProject.Repositories.Interfaces
 {
     public interface IUserRepository
     {
-        User GetById(int id);
+        Task<User> GetById(int id);
         Task<User> Authenticate(string username, string password);
         Task<List<User>> GetAllUser();
         Task<bool> UpdateProfile(User user);
         Task<bool> UpdatePassword(ChangePasswordRequest user);
+        Task<bool> SaveUser(User user);
     }
 }

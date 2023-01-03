@@ -14,7 +14,7 @@ namespace KBProject.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    
+
     public class UserController : ControllerBase
     {
         private readonly ILogger<UserController> _logger;
@@ -27,10 +27,29 @@ namespace KBProject.Controllers
         }
 
         [HttpGet]
-        public async Task<List<User>> GetAllUser()
+        [Route("GetAllUser")]
+        public async Task<ResponseObject<List<User>>> GetAllUser()
         {
-            var users  = await _userRepository.GetAllUser();
-            return users;
+            var users = await _userRepository.GetAllUser();
+
+            if (users == null && users.Count == 0)
+                return new ResponseObject<List<User>> { Message = "No User Found!", Result = null, Success = false };
+
+            return new ResponseObject<List<User>> { Message = "Successfully logged in.", Success = true, Result = users };
+
+        }
+
+        [HttpGet]
+        [Route("GetUser")]
+        public async Task<ResponseObject<User>> GetUser(int id)
+        {
+            var users = await _userRepository.GetById(id);
+
+            if (users == null)
+                return new ResponseObject<User> { Message = "No User Found!", Result = null, Success = false };
+
+            return new ResponseObject<User> { Message = "Successfully logged in.", Success = true, Result = users };
+
         }
 
         [HttpPost]
@@ -45,5 +64,12 @@ namespace KBProject.Controllers
 
             return true;
         }
+        [HttpPost]
+        [Route("SaveUser")]
+        public async Task<bool> SaveUser(User user)
+        {
+            return await _userRepository.SaveUser(user);
+        }
+
     }
 }

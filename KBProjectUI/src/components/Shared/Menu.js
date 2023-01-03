@@ -23,9 +23,6 @@ import {
 class Menu extends Component {
 	constructor(props) {
 		super(props);
-		this.toggleUserMenu = this.toggleUserMenu.bind(this);
-		this.handleStatistics = this.handleStatistics.bind(this);
-		this.handler = this.handler.bind(this);
 		this.state = {
 			parentlink: null,
 			childlink: null,
@@ -45,81 +42,6 @@ class Menu extends Component {
 			parentlink: parentlink,
 			childlink: nochildlink,
 		});
-	}
-
-	handleDarkMode(e) {
-		this.props.darkModeAction(e.target.checked)
-	}
-	handleFixNavbar(e) {
-		this.props.fixNavbarAction(e.target.checked)
-	}
-	handleDarkHeader(e) {
-		this.props.darkHeaderAction(e.target.checked)
-	}
-	handleMinSidebar(e) {
-		this.props.darkMinSidebarAction(e.target.checked)
-	}
-	handleSidebar(e) {
-		this.props.darkSidebarAction(e.target.checked)
-	}
-	handleIconColor(e) {
-		this.props.iconColorAction(e.target.checked)
-	}
-	handleGradientColor(e) {
-		this.props.gradientColorAction(e.target.checked)
-	}
-	handleRtl(e) {
-		this.props.rtlAction(e.target.checked)
-	}
-	handleFont(e) {
-		this.props.fontAction(e)
-	}
-	handleFriendList(e) {
-		this.props.friendListAction(e)
-	}
-	handleStatistics(e) {
-		this.props.statisticsAction(e)
-	}
-	closeFriendList(e) {
-		this.props.friendListCloseAction(e)
-	}
-	closeStatistics(e) {
-		this.props.statisticsCloseAction(e)
-	}
-	handleSubMenuIcon(e) {
-		this.props.subMenuIconAction(e)
-	}
-	handleMenuIcon(e) {
-		this.props.menuIconAction(e)
-	}
-	handleBoxLayout(e) {
-		this.props.boxLayoutAction(e.target.checked)
-	}
-	toggleLeftMenu(e) {
-		this.props.toggleLeftMenuAction(e)
-	}
-	toggleRightSidebar() {
-		this.setState({ isOpenRightSidebar: !this.state.isOpenRightSidebar })
-	}
-	toggleUserMenu() {
-		this.setState({ isOpenUserMenu: !this.state.isOpenUserMenu })
-	}
-	toggleSubMenu(e) {
-		let menucClass = ''
-		if (e.itemId) {
-			const subClass = e.items.map((menuItem, i) => {
-				if (menuItem.to === this.props.location.pathname) {
-					menucClass = "in";
-				} else {
-					menucClass = "collapse";
-				}
-				return menucClass
-			})
-			return subClass
-			// return "collapse";
-		} else {
-			return e.visible ? "collapse" : "metismenu";
-		}
 	}
 
 	render() {

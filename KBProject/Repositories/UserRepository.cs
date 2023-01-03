@@ -21,6 +21,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Microsoft.Extensions.Options;
 using System.Text;
+using Microsoft.AspNetCore.Components;
 
 namespace KBProject.Repositories
 {
@@ -40,20 +41,35 @@ namespace KBProject.Repositories
             return user.FirstOrDefault();
         }
 
+
         public async Task<List<User>> GetAllUser()
         {
-            var users = await _dBService.ExecuteQuery<User>("select * from user");
+            var users = await _dBService.ExecuteQuery<User>("select * from [user]");
             return users;
         }
 
-        public User GetById(int id)
+        public async Task<User> GetById(int id)
         {
-            throw new NotImplementedException();
+            var users = await _dBService.ExecuteQuery<User>("select * from [user] where id = @id", new { id });
+            return users.FirstOrDefault();
         }
 
         public async Task<bool> UpdateProfile(User user)
         {
             await _dBService.ExecuteQuery<bool>("update user set FirstName =@FirstName, Lastname =@LastName, email= @Email, role=@role where Id = @Id", new { user.FirstName, user.LastName, user.Email, user.Role, user.Id });
+            return true;
+        }
+        public async Task<bool> SaveUser(User user)
+        {
+            if (user.Id > 0)
+            {
+                await _dBService.ExecuteQuery<bool>("update user set FirstName =@FirstName, Lastname =@LastName, email= @Email, role=@role where Id = @Id", new { user.FirstName, user.LastName, user.Email, user.Role, user.Id });
+            }
+            else
+            {
+                await _dBService.ExecuteQuery<bool>("insert into [user] (FirstName, Lastname , email , role)  values (@FirstName, @LastName,@Email, @role )", new { user.FirstName, user.LastName, user.Email, user.Role });
+            }
+
             return true;
         }
 
