@@ -14,5 +14,9 @@ namespace KBProject.Repositories.Interfaces
         Task<bool> UpdateProfile(User user);
         Task<bool> UpdatePassword(ChangePasswordRequest user);
         Task<bool> SaveUser(User user);
+        Task<bool> DeleteUser(int id);
+        Task<List<AssociatedUser>> GetAssociatedUsers(int id);
+        Task<List<AssociatedUser>> GetSMEUser(int id);
+        Task<bool> AssociateUser(int id, int userid);
     }
 }

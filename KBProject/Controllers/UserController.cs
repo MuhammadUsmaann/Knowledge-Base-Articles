@@ -1,5 +1,6 @@
 ﻿using KBProject.Filters;
 using KBProject.Models;
+using KBProject.Repositories;
 using KBProject.Repositories.Interfaces;
 
 using Microsoft.AspNetCore.Mvc;
@@ -25,7 +26,15 @@ namespace KBProject.Controllers
             _userRepository = userRepository;
 
         }
+        [Route("DeleteUser")]
+        public async Task<ResponseObject<bool>> DeleteUser(int id)
+        {
+            var article = await _userRepository.DeleteUser(id);
 
+            if (article == false)
+                return new ResponseObject<bool> { Message = "No article Found!", Result = false, Success = false };
+            return new ResponseObject<bool> { Message = "Successfully logged in.", Success = true, Result = article };
+        }
         [HttpGet]
         [Route("GetAllUser")]
         public async Task<ResponseObject<List<User>>> GetAllUser()
@@ -48,7 +57,36 @@ namespace KBProject.Controllers
             if (users == null)
                 return new ResponseObject<User> { Message = "No User Found!", Result = null, Success = false };
 
+            if(users.Role == "user")
+            {
+                users.AssociatedUsers = await _userRepository.GetAssociatedUsers(id);
+            }
             return new ResponseObject<User> { Message = "Successfully logged in.", Success = true, Result = users };
+
+        }
+
+        [HttpGet]
+        [Route("AssociateUser")]
+        public async Task<ResponseObject<bool>> AssociateUser(int id, int userid)
+        {
+            var users = await _userRepository.AssociateUser(id, userid);
+
+            if (users == true)
+                return new ResponseObject<bool> { Message = "No User Found!", Result = true, Success = false };
+
+            return new ResponseObject<bool> { Message = "Successfully logged in.", Success = true, Result = users };
+
+        }
+        [HttpGet]
+        [Route("GetSMEUser")]
+        public async Task<ResponseObject<List<AssociatedUser>>> GetSMEUser(int id)
+        {
+            var users = await _userRepository.GetSMEUser(id);
+
+            if (users == null)
+                return new ResponseObject<List<AssociatedUser>> { Message = "No User Found!", Result = null, Success = false };
+
+            return new ResponseObject<List<AssociatedUser>> { Message = "Successfully logged in.", Success = true, Result = users };
 
         }
 

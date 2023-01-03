@@ -4,6 +4,19 @@ export const API_ROUTES = {
   SAVE_USER: `${API_URL}user/SaveUser`,
   GET_USER: `${API_URL}user/GetUser`,
   GET_USERS: `${API_URL}user/GetAllUser`,
+  GET_SME_USERS: `${API_URL}user/GetSMEUser`,
+  DELETE_USER : `${API_URL}user/DeleteUser`,
+  ASSOCIATE_USER : `${API_URL}user/AssociateUser`,
+  
+
+  SAVE_ARTICLE: `${API_URL}Article/SaveArticle`,
+  GET_ARTICLES: `${API_URL}Article/GetArticles`,
+  GET_ARTICLE_BY_ID: `${API_URL}Article/GetById`,
+  GET_ARTICLES_BY_USER: `${API_URL}Article/GetArticlesByUserId`,
+  DELETE_ARTICLE : `${API_URL}Article/DeleteArticle`,
+
+  
+  
 //   GET_USER: `${API_URL}/auth/me`,
 }
 
