@@ -23,7 +23,6 @@ class Users extends Component {
 			smeUsers : []
 
 		}
-		this.child = React.createRef();
 	}
 
 	async deletehandle(id) {
@@ -189,8 +188,6 @@ class Users extends Component {
 					associatedUsers: response?.data.Result.AssociatedUsers
 				})
 				document.getElementById("user-tab").click();
-
-				this.child.current.setUserId(response?.data.Result.Id);
 			}
 		}
 		catch (err) {
@@ -380,7 +377,7 @@ class Users extends Component {
 														<hr className="mt-4" />
 														<div class="row col-12 mt-2" style={{ display: 'block' }}>
 															<h6 class="pull-left">Module Permission</h6>
-															<AddUsers   ref={this.child}/>
+															<AddUsers userid={this.state.id} />
 														</div>
 
 														<div className="table-responsive">

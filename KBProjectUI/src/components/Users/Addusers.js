@@ -9,11 +9,12 @@ class AddUsers extends Component {
     constructor(props) {
         super(props);
         this.setUserId = this.setUserId.bind(this);
+        
         this.state = {
             selectedUsers: [],
             smeUsers: [],
             showResult: [],
-            id: 0,
+            id: this.props.userid
         }
     }
     setUserId(id) {

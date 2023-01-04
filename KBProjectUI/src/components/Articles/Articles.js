@@ -161,15 +161,15 @@ class Articles extends Component {
 	};
 	async LoadArticleData (event)  {
 		try {
-			let id = event.target.id;
-			if(event.target.tagName == "I")
-			{
-				id= event.target.parentElement.id
-			}
+			// let id = event.target.id;
+			// if(event.target.tagName == "I")
+			// {
+			// 	id= event.target.parentElement.id
+			// }
 
 			const response = await axios({
 				method: 'get',
-				url: API_ROUTES.GET_ARTICLE_BY_ID + "?id="  + id
+				url: API_ROUTES.GET_ARTICLE_BY_ID + "?id="  + event
 			});
 
 			if (!response?.data?.Success) {
@@ -283,9 +283,9 @@ class Articles extends Component {
 																				type="button"
 																				className="btn btn-icon"
 																				title="Edit"
-																				id={obj.Id} onClick={this.LoadArticleData}
+																				id={obj.Id} onClick={() => this.LoadArticleData(obj.Id)}
 																			>
-																				<i className="fa fa-edit" />
+																				<i className="fa fa-edit"  onClick={() => this.LoadArticleData(obj.Id)}/>
 																			</button>
 																			<button
 																				type="button"
@@ -294,7 +294,7 @@ class Articles extends Component {
 																				data-type="confirm"
 																				onClick={() => this.deletehandle(obj.Id)}
 																			>
-																				<i className="fa fa-trash-o text-danger" />
+																				<i className="fa fa-trash-o text-danger" onClick={() => this.deletehandle(obj.Id)}/>
 																			</button>
 																		</td>
 																	</tr>
@@ -352,10 +352,11 @@ class Articles extends Component {
 														onChange={this.handleDescriptionChange}></Ckeditor>
 												</div>
 												<div className='col-12 mt-3'>
-													<button type="button" className="btn btn-primary" onClick={this.saveArticle}>
+													<button type="button" className="btn btn-primary"
+													onClick={() => this.saveArticle()}>
 														Save
 													</button>
-													<button type="button" className="btn btn-primary ml-3" onClick={this.saveArticleAndClose}>
+													<button type="button" className="btn btn-primary ml-3" onClick={()=>this.saveArticleAndClose()}>
 														Save & Close
 													</button>
 													<button

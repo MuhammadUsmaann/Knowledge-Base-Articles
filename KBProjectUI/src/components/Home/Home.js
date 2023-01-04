@@ -6,6 +6,8 @@ import Card from './Cards';
 //import Tags from './tagify/react.tagify'
 import Tags from '@yaireo/tagify/dist/react.tagify'
 import "@yaireo/tagify/dist/tagify.css"
+import { API_ROUTES } from '../../lib/constants';
+import axios from 'axios';
 
 const baseTagifySettings = {
 	defaultValue: [""],
@@ -22,22 +24,57 @@ class Home extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			tagifyProps: [
-				"aaa",
-				"aaa1",
-				"aaa2",
-				"aaa3",
-				"bbb1",
-				"bbb2",
-				"bbb3",
-				"bbb4"
-			]
+			tags: [],
+			searchText: "",
+			showResult: []
 		}
 	}
 
 	componentDidMount() {
 
 
+	}
+	handleTagChange = async (event) => {
+		let tags = "";
+		if (event.detail.tagify.value.length > 0) {
+			if (event.detail.tagify.value.length == 1) {
+				tags = event.detail.tagify.value[0].value;
+			}
+			else {
+				tags = event.detail.tagify.value.reduce(function (a, b) {
+					return (a.value || a) + ", " + b.value
+				}
+				)
+			}
+
+		}
+		this.setState({
+			tags: tags
+		});
+	};
+	handleSearchTextChange = async (event) => {
+		this.setState({
+			searchText: event.target.value
+		})
+	}
+	async componentWillMount() {
+		this.LoadArticles();
+
+	}
+	LoadArticles = async () => {
+		const response = await axios({
+			method: 'get',
+			url: API_ROUTES.GET_ARTICLES
+		});
+		if (!response?.data?.Success) {
+			console.log('Something went wrong during signing in: ', response);
+			return;
+		}
+		else {
+			this.setState({
+				showResult: response?.data?.Result
+			})
+		}
 	}
 
 	render() {
@@ -53,17 +90,17 @@ class Home extends Component {
 										<div className="row">
 											<div className="col-lg-5 col-md-4 col-sm-6">
 												<div className="input-group">
-													<input type="text" className="form-control" placeholder="Search" />
+													<input type="text" className="form-control" value={this.state.searchText} onChange={this.handleSearchTextChange} placeholder="Search" />
 												</div>
 											</div>
 											<div className="col-lg-6 col-md-6 col-sm-6">
 												<div className="input-group">
 													<Tags
-														// tagifyRef={tagifyRef1}
+														value={this.state.tags}
 														settings={baseTagifySettings}
 														autoFocus={true}
-														{...this.state.tagifyProps}
-													//onChange={onChange}
+														{...this.state.tags}
+														onChange={this.handleTagChange}
 													// onEditInput={() => console.log("onEditInput")}
 													// onEditBeforeUpdate={() => console.log`onEditBeforeUpdate`}
 													// onEditUpdated={() => console.log("onEditUpdated")}
@@ -86,13 +123,13 @@ class Home extends Component {
 								</div>
 							</div>
 							{
-								list.map((obj, index) => {
+								this.state.showResult.map((obj, index) => {
 									return (
 										<div className="col-xl-3 col-lg-4 col-md-6">
-											<Card title={obj.title}
-												description={obj.description}
-												author={obj.author}
-												date={obj.date}
+											<Card title={obj.Title}
+												description={obj.Description}
+												author={obj.CreatedByName}
+												date={obj.CreateDate}
 											/>
 										</div>
 									)

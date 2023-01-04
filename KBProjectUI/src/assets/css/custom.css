@@ -33,3 +33,13 @@ div.rtl{
 .tags-input, .tagify{
     width: 100% !important;
 }
+.popup-content{
+    min-width: 70%;
+    max-width: 70%;
+    max-height: 80%;
+}
+.popup-content  .desciption-body{
+    min-height: 500px;
+    max-height: 600px;
+    overflow-y: scroll;
+}
