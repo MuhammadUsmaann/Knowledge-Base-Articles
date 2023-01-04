@@ -1,7 +1,8 @@
 import axios from 'axios';
 import React, { Component } from 'react';
 import Popup from 'reactjs-popup';
-import { API_ROUTES } from '../../lib/constants';
+import { SendGetRequest } from '../../lib/common';
+import { API_ROUTES, APP_ROUTES } from '../../lib/constants';
 
 
 class AddUsers extends Component {
@@ -9,7 +10,7 @@ class AddUsers extends Component {
     constructor(props) {
         super(props);
         this.setUserId = this.setUserId.bind(this);
-        
+
         this.state = {
             selectedUsers: [],
             smeUsers: [],
@@ -27,39 +28,36 @@ class AddUsers extends Component {
 
     }
     LoadSMEUsersList = async () => {
-        const response = await axios({
-            method: 'get',
-            url: API_ROUTES.GET_SME_USERS + "?id=" + this.state.id 
-        });
-        if (!response?.data?.Success) {
-            console.log('Something went wrong during signing in: ', response);
+
+        const response = await SendGetRequest(API_ROUTES.GET_SME_USERS + "?id=" + this.state.id);
+
+        if (response?.authenticated) {
+            this.props.router.navigate(APP_ROUTES.SIGN_IN)
             return;
         }
         else {
             this.setState({
-                smeUsers: response?.data?.Result
+                smeUsers: response
             })
         }
     }
     AssociateUser = async (event) => {
-        const response = await axios({
-            method: 'get',
-            url: API_ROUTES.ASSOCIATE_USER + "?id=" + this.state.id + "&userId=" + event.target.id,
-        });
-        if (!response?.data?.Success) {
-            console.log('Something went wrong during signing in: ', response);
+        const response = await SendGetRequest( API_ROUTES.ASSOCIATE_USER + "?id=" + this.state.id + "&userId=" + event.target.id);
+
+        if (response?.authenticated) {
+            this.props.router.navigate(APP_ROUTES.SIGN_IN)
             return;
         }
         else {
             this.setState({
-				users: this.state.smeUsers.filter(obj => {
-					return obj.Id !== event.target.id;
-				})
-			});
+                users: this.state.smeUsers.filter(obj => {
+                    return obj.Id !== event.target.id;
+                })
+            });
         }
     }
     render() {
-        
+
         return (
             <>
                 <Popup trigger={

@@ -16,7 +16,7 @@ namespace KBProject.Repositories
         {
             _dBService = dBService;
         }
-        public async Task<List<Article>> GetArticles()
+        public async Task<List<Article>> GetArticles(SearchArticleRequest searchArticleRequest)
         {
             var articles = await _dBService.ExecuteQuery<Article>("select a.*, u.FirstName + ' ' + u.LastName CreatedByName from [Articles]  a  join [user] u on u.Id=a.CreatedBy");
             return articles;

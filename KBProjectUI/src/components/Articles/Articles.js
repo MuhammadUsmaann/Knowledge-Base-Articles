@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import articleList from './ArticleList';
 import Ckeditor from '../common/ckeditor';
 import Tags from '@yaireo/tagify/dist/react.tagify';
 import "@yaireo/tagify/dist/tagify.css";
-import axios from 'axios';
-import { API_ROUTES } from '../../lib/constants';
+import { API_ROUTES, APP_ROUTES } from '../../lib/constants';
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 import Moment from 'react-moment';
+import { SendGetRequest, SendPostRequest } from '../../lib/common';
 
 const baseTagifySettings = {
 	defaultValue: [""],
@@ -17,7 +16,7 @@ const baseTagifySettings = {
 		enabled: 0 // always show suggestions dropdown
 	},
 	showFilteredDropdown: "a",
-	
+
 }
 
 class Articles extends Component {
@@ -34,14 +33,14 @@ class Articles extends Component {
 		this.child = React.createRef();
 	}
 	handleSearchTextOnChange = async (event) => {
-		
+
 		if (event != null && event != undefined) {
 			this.setState({
 				showResult: this.state.datalist.filter(employee => {
 					return employee.Title.toLowerCase().includes(event.target.value.toLowerCase().trim())
 						|| employee.Description.toLowerCase().includes(event.target.value.toLowerCase().trim())
 						|| employee.CreateDate.toLowerCase().includes(event.target.value.toLowerCase().trim());
-						//|| employee.CreatedBy.toLowerCase().includes(event.target.value.toLowerCase());
+					//|| employee.CreatedBy.toLowerCase().includes(event.target.value.toLowerCase());
 				})
 			});
 		}
@@ -88,12 +87,10 @@ class Articles extends Component {
 		});
 	}
 	async deletehandle(id) {
-		const response = await axios({
-			method: 'get',
-			url: API_ROUTES.DELETE_ARTICLE + "?id=" +id
-		});
-		if (!response?.data?.Success) {
-			console.log('Something went wrong during signing in: ', response);
+		const response = await SendGetRequest(API_ROUTES.DELETE_ARTICLE + "?id=" + id);
+
+		if (response?.authenticated) {
+			this.props.router.navigate(APP_ROUTES.SIGN_IN)
 			return;
 		}
 		else {
@@ -107,25 +104,24 @@ class Articles extends Component {
 			})
 		}
 
-		
+
 	}
 	async componentWillMount() {
 		this.LoadArticlesList()
 	}
 
 	async LoadArticlesList() {
-		const response = await axios({
-			method: 'get',
-			url: API_ROUTES.GET_ARTICLES
-		});
-		if (!response?.data?.Success) {
-			console.log('Something went wrong during signing in: ', response);
+
+		const response = await SendGetRequest(API_ROUTES.GET_ARTICLES);
+
+		if (response?.authenticated) {
+			this.props.router.navigate(APP_ROUTES.SIGN_IN)
 			return;
 		}
 		else {
 			this.setState({
-				datalist: response?.data?.Result,
-				showResult: response?.data?.Result,
+				datalist: response,
+				showResult: response,
 			});
 		}
 	}
@@ -133,19 +129,16 @@ class Articles extends Component {
 		this.saveArticle();
 		document.getElementById("article-list").click();
 	}
-	async saveArticle  () {
+	async saveArticle() {
 		try {
-			const response = await axios({
-				method: 'post',
-				url: API_ROUTES.SAVE_ARTICLE,
-				data: {
-					title: this.state.title,
-					tags: this.state.tags,
-					description: this.state.description
-				}
+			const response = await SendPostRequest(API_ROUTES.SAVE_ARTICLE, {
+				title: this.state.title,
+				tags: this.state.tags,
+				description: this.state.description
 			});
-			if (!response?.data?.Success) {
-				console.log('Something went wrong during signing in: ', response);
+
+			if (response?.authenticated) {
+				this.props.router.navigate(APP_ROUTES.SIGN_IN)
 				return;
 			}
 			else {
@@ -159,32 +152,24 @@ class Articles extends Component {
 			//setIsLoading(false);
 		}
 	};
-	async LoadArticleData (event)  {
+	async LoadArticleData(event) {
 		try {
-			// let id = event.target.id;
-			// if(event.target.tagName == "I")
-			// {
-			// 	id= event.target.parentElement.id
-			// }
 
-			const response = await axios({
-				method: 'get',
-				url: API_ROUTES.GET_ARTICLE_BY_ID + "?id="  + event
-			});
+			const response = await SendGetRequest(API_ROUTES.GET_ARTICLE_BY_ID + "?id=" + event);
 
-			if (!response?.data?.Success) {
-				console.log('Something went wrong during signing in: ', response);
+			if (response?.authenticated) {
+				this.props.router.navigate(APP_ROUTES.SIGN_IN)
 				return;
 			}
-			else{
+			else {
 				this.setState({
-					title: response?.data.Result.Title,
-					description: response?.data.Result.Description,
-					tags: response?.data.Result.Tags,
-					id:response?.data.Result.Id
+					title: response.Title,
+					description: response.Description,
+					tags: response.Tags,
+					id: response.Id
 				})
 				document.getElementById("article-tab").click();
-				this.child.current.updateContent(response?.data.Result.Description);
+				this.child.current.updateContent(response.Description);
 			}
 		}
 		catch (err) {
@@ -285,7 +270,7 @@ class Articles extends Component {
 																				title="Edit"
 																				id={obj.Id} onClick={() => this.LoadArticleData(obj.Id)}
 																			>
-																				<i className="fa fa-edit"  onClick={() => this.LoadArticleData(obj.Id)}/>
+																				<i className="fa fa-edit" onClick={() => this.LoadArticleData(obj.Id)} />
 																			</button>
 																			<button
 																				type="button"
@@ -294,7 +279,7 @@ class Articles extends Component {
 																				data-type="confirm"
 																				onClick={() => this.deletehandle(obj.Id)}
 																			>
-																				<i className="fa fa-trash-o text-danger" onClick={() => this.deletehandle(obj.Id)}/>
+																				<i className="fa fa-trash-o text-danger" onClick={() => this.deletehandle(obj.Id)} />
 																			</button>
 																		</td>
 																	</tr>
@@ -332,17 +317,6 @@ class Articles extends Component {
 															autoFocus={true}
 															{...this.state.tags}
 															onChange={this.handleTagChange}
-														// onEditInput={() => console.log("onEditInput")}
-														// onEditBeforeUpdate={() => console.log`onEditBeforeUpdate`}
-														// onEditUpdated={() => {console.log("onEditStart")}}
-														// onEditStart={() => console.log("onEditStart")}
-														// onEditKeydown={() => console.log("onEditKeydown")}
-														// onDropdownShow={() => console.log("onDropdownShow")}
-														// onDropdownHide={() => console.log("onDropdownHide")}
-														// onDropdownSelect={() => console.log("onDropdownSelect")}
-														// onDropdownScroll={() => console.log("onDropdownScroll")}
-														// onDropdownNoMatch={() => console.log("onDropdownNoMatch")}
-														// onDropdownUpdated={() => console.log("onDropdownUpdated")}
 														/>
 													</div>
 												</div>
@@ -353,10 +327,10 @@ class Articles extends Component {
 												</div>
 												<div className='col-12 mt-3'>
 													<button type="button" className="btn btn-primary"
-													onClick={() => this.saveArticle()}>
+														onClick={() => this.saveArticle()}>
 														Save
 													</button>
-													<button type="button" className="btn btn-primary ml-3" onClick={()=>this.saveArticleAndClose()}>
+													<button type="button" className="btn btn-primary ml-3" onClick={() => this.saveArticleAndClose()}>
 														Save & Close
 													</button>
 													<button

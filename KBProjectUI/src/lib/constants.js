@@ -11,6 +11,7 @@ export const API_ROUTES = {
 
   SAVE_ARTICLE: `${API_URL}Article/SaveArticle`,
   GET_ARTICLES: `${API_URL}Article/GetArticles`,
+  GET_ARTICLES_HOME: `${API_URL}Home/GetArticles`,
   GET_ARTICLE_BY_ID: `${API_URL}Article/GetById`,
   GET_ARTICLES_BY_USER: `${API_URL}Article/GetArticlesByUserId`,
   DELETE_ARTICLE : `${API_URL}Article/DeleteArticle`,

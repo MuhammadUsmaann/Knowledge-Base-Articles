@@ -27,6 +27,7 @@ class Login extends Component {
 	};
 	render() {
 
+		//let {user, authenticated} = useUser();
 		let token = getTokenFromLocalStorage();
 
 		if (token) {

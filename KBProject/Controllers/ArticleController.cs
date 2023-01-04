@@ -1,20 +1,23 @@
 ﻿using KBProject.Models;
 using KBProject.Repositories;
 using KBProject.Repositories.Interfaces;
+using KBProject.TokenAuthentication;
 
 using Microsoft.AspNetCore.Mvc;
 
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+
 namespace KBProject.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize("ADMIN,SME")]
     public class ArticleController : ControllerBase
     {
         private IArticleRepository _articleRepository;
-        public ArticleController(IArticleRepository articleRepository)
+        public ArticleController( IArticleRepository articleRepository)
         {
             _articleRepository = articleRepository;
         }
@@ -48,10 +51,12 @@ namespace KBProject.Controllers
 
             return new ResponseObject<bool> { Message = "Successfully logged in.", Success = true, Result = result };
         }
+
+        [HttpPost]
         [Route("GetArticles")]
-        public async Task<ResponseObject<List<Article>>> GetArticles()
-        {
-            var article = await _articleRepository.GetArticles();
+        public async Task<ResponseObject<List<Article>>> GetArticles(SearchArticleRequest searchArticleRequest)
+        { 
+            var article = await _articleRepository.GetArticles(searchArticleRequest);
 
             if (article == null)
                 return new ResponseObject<List<Article>> { Message = "No article Found!", Result = null, Success = false };

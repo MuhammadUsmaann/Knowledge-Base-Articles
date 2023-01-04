@@ -2,6 +2,7 @@
 using KBProject.Models;
 using KBProject.Repositories;
 using KBProject.Repositories.Interfaces;
+using KBProject.TokenAuthentication;
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -15,7 +16,7 @@ namespace KBProject.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-
+    [Authorize("ADMIN")]
     public class UserController : ControllerBase
     {
         private readonly ILogger<UserController> _logger;

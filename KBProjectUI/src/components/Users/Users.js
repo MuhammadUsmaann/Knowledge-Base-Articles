@@ -2,7 +2,8 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { useLoaderData } from 'react-router-dom';
-import { API_ROUTES } from '../../lib/constants';
+import { SendGetRequest, SendPostRequest } from '../../lib/common';
+import { API_ROUTES, APP_ROUTES } from '../../lib/constants';
 import AddUsers from './Addusers';
 
 
@@ -19,19 +20,17 @@ class Users extends Component {
 			id: 0,
 			users: [],
 			showResult: [],
-			associatedUsers : [],
-			smeUsers : []
+			associatedUsers: [],
+			smeUsers: []
 
 		}
 	}
 
 	async deletehandle(id) {
-		const response = await axios({
-			method: 'get',
-			url: API_ROUTES.DELETE_USER + "?id=" + id
-		});
-		if (!response?.data?.Success) {
-			console.log('Something went wrong during signing in: ', response);
+		const response = await SendGetRequest(API_ROUTES.DELETE_USER + "?id=" + id);
+
+		if (response?.authenticated) {
+			this.props.router.navigate(APP_ROUTES.SIGN_IN)
 			return;
 		}
 		else {
@@ -93,20 +92,18 @@ class Users extends Component {
 		this.LoadUsersList();
 
 	}
-	
+
 	async LoadUsersList() {
-		const response = await axios({
-			method: 'get',
-			url: API_ROUTES.GET_USERS
-		});
-		if (!response?.data?.Success) {
-			console.log('Something went wrong during signing in: ', response);
+		const response = await SendGetRequest(API_ROUTES.GET_USERS);
+
+		if (response?.authenticated) {
+			this.props.router.navigate(APP_ROUTES.SIGN_IN)
 			return;
 		}
 		else {
 			this.setState({
-				users: response?.data?.Result,
-				showResult: response?.data?.Result,
+				users: response,
+				showResult: response,
 			})
 		}
 	}
@@ -133,21 +130,17 @@ class Users extends Component {
 	saveUser = async () => {
 		try {
 			this.state.isLoading = true;
-			const response = await axios({
-				method: 'post',
-				url: API_ROUTES.SAVE_USER,
-				data: {
-					FirstName: this.state.firstName,
-					LastName: this.state.lastName,
-					Email: this.state.email,
-					MobileNo: this.state.mobileNo,
-					Role: this.state.role,
-					Id: this.state.id
-				}
+			const response = await SendPostRequest(API_ROUTES.SAVE_USER, {
+				FirstName: this.state.firstName,
+				LastName: this.state.lastName,
+				Email: this.state.email,
+				MobileNo: this.state.mobileNo,
+				Role: this.state.role,
+				Id: this.state.id
 			});
 
-			if (!response?.data?.Success) {
-				console.log('Something went wrong during signing in: ', response);
+			if (response?.authenticated) {
+				this.props.router.navigate(APP_ROUTES.SIGN_IN)
 				return;
 			}
 			else {
@@ -168,24 +161,21 @@ class Users extends Component {
 				id = event.target.parentElement.id
 			}
 
-			const response = await axios({
-				method: 'get',
-				url: API_ROUTES.GET_USER + "?id=" + id
-			});
+			const response = await SendGetRequest(API_ROUTES.GET_USER + "?id=" + id);
 
-			if (!response?.data?.Success) {
-				console.log('Something went wrong during signing in: ', response);
+			if (response?.authenticated) {
+				this.props.router.navigate(APP_ROUTES.SIGN_IN)
 				return;
 			}
 			else {
 				this.setState({
-					firstName: response?.data.Result.FirstName,
-					lastName: response?.data.Result.LastName,
-					email: response?.data.Result.Email,
-					mobileNo: response?.data.Result.MobileNo,
-					role: response?.data.Result.Role,
-					id: response?.data.Result.Id,
-					associatedUsers: response?.data.Result.AssociatedUsers
+					firstName: response.FirstName,
+					lastName: response.LastName,
+					email: response.Email,
+					mobileNo: response.MobileNo,
+					role: response.Role,
+					id: response.Id,
+					associatedUsers: response.AssociatedUsers
 				})
 				document.getElementById("user-tab").click();
 			}
@@ -200,7 +190,7 @@ class Users extends Component {
 
 	render() {
 		const { fixNavbar } = this.props;
-		
+
 
 		return (
 			<>
@@ -391,8 +381,8 @@ class Users extends Component {
 																	</tr>
 																</thead>
 																<tbody>
-																{this.state.associatedUsers.map((auser, i) => {
-																	return (
+																	{this.state.associatedUsers.map((auser, i) => {
+																		return (
 																			<tr key={i}>
 																				<td>
 																					<h6 className="mb-0">{auser.FirstName} {auser.LastName}</h6>
@@ -402,8 +392,9 @@ class Users extends Component {
 
 																				<td />
 																			</tr>
-																			)}
-																)}
+																		)
+																	}
+																	)}
 
 
 																</tbody>

@@ -27,7 +27,7 @@ namespace KBProject.Controllers
         [HttpPost]
         public async Task<ResponseObject<AuthenticateResponse>> Autherize([FromBody] AuthenticateRequest authenticate)
         {
-            var response = _authenticationService.Authenticate(authenticate);
+            var response = await _authenticationService.Authenticate(authenticate);
 
             if (response == null)
                 return new ResponseObject<AuthenticateResponse> { Message = "Username or Password is invalid", Result = null, Success = false };

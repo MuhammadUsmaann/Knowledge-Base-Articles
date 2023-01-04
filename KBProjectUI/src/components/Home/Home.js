@@ -6,8 +6,9 @@ import Card from './Cards';
 //import Tags from './tagify/react.tagify'
 import Tags from '@yaireo/tagify/dist/react.tagify'
 import "@yaireo/tagify/dist/tagify.css"
-import { API_ROUTES } from '../../lib/constants';
+import { API_ROUTES, APP_ROUTES } from '../../lib/constants';
 import axios from 'axios';
+import { SendPostRequest, withRouter } from '../../lib/common';
 
 const baseTagifySettings = {
 	defaultValue: [""],
@@ -24,7 +25,7 @@ class Home extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			tags: [],
+			tags: "",
 			searchText: "",
 			showResult: []
 		}
@@ -62,21 +63,25 @@ class Home extends Component {
 
 	}
 	LoadArticles = async () => {
-		const response = await axios({
-			method: 'get',
-			url: API_ROUTES.GET_ARTICLES
+
+		const response = await SendPostRequest(API_ROUTES.GET_ARTICLES_HOME,  {
+			SearchText: this.state.searchText,
+			Tags: this.state.tags
 		});
-		if (!response?.data?.Success) {
-			console.log('Something went wrong during signing in: ', response);
+		
+		if (response?.authenticated) {
+			this.props.router.navigate(APP_ROUTES.SIGN_IN)
 			return;
 		}
 		else {
 			this.setState({
-				showResult: response?.data?.Result
+				showResult: response
 			})
 		}
 	}
-
+	handleSearchButtonClicked = async () => {
+		this.LoadArticles();
+	}
 	render() {
 		const { fixNavbar } = this.props;
 		return (
@@ -116,7 +121,7 @@ class Home extends Component {
 												</div>
 											</div>
 											<div className="col-lg-3 col-md-4 col-sm-12">
-												<a href="fake_url;" className="btn btn-sm btn-primary" >Search</a>
+												<button href="fake_url;" className="btn btn-sm btn-primary" onClick={this.handleSearchButtonClicked}>Search</button>
 											</div>
 										</div>
 									</div>
@@ -147,5 +152,4 @@ const mapStateToProps = state => ({
 	fixNavbar: state.settings.isFixNavbar
 })
 
-const mapDispatchToProps = dispatch => ({})
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default withRouter(Home);
