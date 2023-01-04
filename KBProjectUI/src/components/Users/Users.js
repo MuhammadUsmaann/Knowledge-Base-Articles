@@ -1,7 +1,6 @@
-import axios from 'axios';
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { useLoaderData } from 'react-router-dom';
 import { SendGetRequest, SendPostRequest } from '../../lib/common';
 import { API_ROUTES, APP_ROUTES } from '../../lib/constants';
 import AddUsers from './Addusers';
@@ -71,7 +70,7 @@ class Users extends Component {
 	};
 	handleSearchTextOnChange = async (event) => {
 
-		if (event != null && event != undefined) {
+		if (event !== null && event !== undefined) {
 			this.setState({
 				showResult: this.state.users.filter(user => {
 					return user.FirstName.toLowerCase().includes(event.target.value.toLowerCase().trim())
@@ -129,7 +128,6 @@ class Users extends Component {
 	}
 	saveUser = async () => {
 		try {
-			this.state.isLoading = true;
 			const response = await SendPostRequest(API_ROUTES.SAVE_USER, {
 				FirstName: this.state.firstName,
 				LastName: this.state.lastName,
@@ -157,7 +155,7 @@ class Users extends Component {
 	LoadUserData = async (event) => {
 		try {
 			let id = event.target.id;
-			if (event.target.tagName == "I") {
+			if (event.target.tagName === "I") {
 				id = event.target.parentElement.id
 			}
 
@@ -189,9 +187,6 @@ class Users extends Component {
 	};
 
 	render() {
-		const { fixNavbar } = this.props;
-
-
 		return (
 			<>
 				<div>
@@ -362,7 +357,7 @@ class Users extends Component {
 														</select>
 													</div>
 												</div>
-												{this.state.role == "user" &&
+												{this.state.role === "user" &&
 													<div className="col-12">
 														<hr className="mt-4" />
 														<div class="row col-12 mt-2" style={{ display: 'block' }}>

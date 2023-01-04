@@ -1,13 +1,8 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux';
-import list from './CardList'
 import Card from './Cards';
-
-//import Tags from './tagify/react.tagify'
 import Tags from '@yaireo/tagify/dist/react.tagify'
 import "@yaireo/tagify/dist/tagify.css"
 import { API_ROUTES, APP_ROUTES } from '../../lib/constants';
-import axios from 'axios';
 import { SendPostRequest, withRouter } from '../../lib/common';
 
 const baseTagifySettings = {
