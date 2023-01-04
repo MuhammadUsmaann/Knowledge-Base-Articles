@@ -5,7 +5,6 @@ using System.Data;
 using System.Threading.Tasks;
 using System;
 using System.Data.SqlClient;
-using Microsoft.Extensions.Configuration;
 
 namespace KBProject.DBAccess
 {
@@ -67,13 +66,13 @@ namespace KBProject.DBAccess
         {
             try
             {
-                var result = SqlMapper.Query<TResult>(Connection, spName, param, _transaction, commandType: CommandType.StoredProcedure);
+                var result = await SqlMapper.QueryAsync<TResult>(Connection, spName, param, _transaction, commandType: CommandType.StoredProcedure);
                 return result;
             }
-            catch (Exception ee)
+            catch (Exception)
             {
                 RollBack();
-                throw ee;
+                throw;
             }
             finally
             {
@@ -87,13 +86,13 @@ namespace KBProject.DBAccess
         {
             try
             {
-                var result = SqlMapper.Query<TResult>(Connection, spName, param, _transaction);
+                var result = await SqlMapper.QueryAsync<TResult>(Connection, spName, param, _transaction);
                 return result;
             }
             catch (Exception ee)
             {
                 RollBack();
-                throw ee;
+                throw;
             }
             finally
             {
@@ -111,7 +110,7 @@ namespace KBProject.DBAccess
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw;
             }
             finally
             {

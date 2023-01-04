@@ -9,10 +9,8 @@ namespace KBProject.Repositories.Interfaces
     {
         Task<Article> GetById(int id);
         Task<bool> SaveArticle(Article article, int userId);
-        Task<List<Article>> GetArticles(SearchArticleRequest searchArticleRequest);
+        Task<List<Article>> GetArticles(SearchArticleRequest searchArticleRequest, int currentUser, string role);
         Task<List<Article>> GetArticlesByUserId(int userId);
-
-        Task<List<Article>> SearchArticle(SearchArticleRequest searchArticleRequest);
         Task<bool> DeleteArticle(int id);
     }
 }

@@ -14,7 +14,7 @@ namespace KBProject.Controllers
     [ApiController]
     [Route("api/[controller]")]
     [Authorize("ADMIN,SME")]
-    public class ArticleController : ControllerBase
+    public class ArticleController : ControllerBaseAPI
     {
         private IArticleRepository _articleRepository;
         public ArticleController( IArticleRepository articleRepository)
@@ -56,7 +56,7 @@ namespace KBProject.Controllers
         [Route("GetArticles")]
         public async Task<ResponseObject<List<Article>>> GetArticles(SearchArticleRequest searchArticleRequest)
         { 
-            var article = await _articleRepository.GetArticles(searchArticleRequest);
+            var article = await _articleRepository.GetArticles(searchArticleRequest, CurrentUserID, CurrentUserRole);
 
             if (article == null)
                 return new ResponseObject<List<Article>> { Message = "No article Found!", Result = null, Success = false };
@@ -67,16 +67,6 @@ namespace KBProject.Controllers
         public async Task<ResponseObject<List<Article>>> GetArticlesByUserId(int userId)
         {
             var article = await _articleRepository.GetArticlesByUserId(userId);
-
-            if (article == null)
-                return new ResponseObject<List<Article>> { Message = "No article Found!", Result = null, Success = false };
-
-            return new ResponseObject<List<Article>> { Message = "Successfully logged in.", Success = true, Result = article };
-        }
-        [Route("SearchArticle")]
-        public async Task<ResponseObject<List<Article>>> SearchArticle(SearchArticleRequest searchArticleRequest)
-        {
-            var article = await _articleRepository.SearchArticle(searchArticleRequest);
 
             if (article == null)
                 return new ResponseObject<List<Article>> { Message = "No article Found!", Result = null, Success = false };

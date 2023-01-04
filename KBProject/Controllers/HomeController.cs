@@ -12,7 +12,7 @@ namespace KBProject.Controllers
     [ApiController]
     [Route("api/[controller]")]
     [Authorize("ADMIN,SME,USER")]
-    public class HomeController : ControllerBase
+    public class HomeController : ControllerBaseAPI
     {
         private IArticleRepository _articleRepository;
         public HomeController(IArticleRepository articleRepository)
@@ -24,7 +24,7 @@ namespace KBProject.Controllers
         [Route("GetArticles")]
         public async Task<ResponseObject<List<Article>>> GetArticles(SearchArticleRequest searchArticleRequest)
         {
-            var article = await _articleRepository.GetArticles(searchArticleRequest);
+            var article = await _articleRepository.GetArticles(searchArticleRequest, CurrentUserID, CurrentUserRole);
 
             if (article == null)
                 return new ResponseObject<List<Article>> { Message = "No article Found!", Result = null, Success = false };
