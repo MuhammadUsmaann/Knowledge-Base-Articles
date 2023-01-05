@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { Component } from 'react';
 import Popup from 'reactjs-popup';
 import { SendGetRequest } from '../../lib/common';
@@ -51,7 +50,7 @@ class AddUsers extends Component {
         else {
             this.setState({
                 users: this.state.smeUsers.filter(obj => {
-                    return obj.Id !== event.target.id;
+                    return obj.Id !== parseInt(event.target.id);
                 })
             });
         }

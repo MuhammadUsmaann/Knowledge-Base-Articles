@@ -18,5 +18,6 @@ namespace KBProject.Repositories.Interfaces
         Task<List<AssociatedUser>> GetAssociatedUsers(int id);
         Task<List<AssociatedUser>> GetSMEUser(int id);
         Task<bool> AssociateUser(int id, int userid);
+        Task<bool> DeleteAssociateUser(int id, int userid);
     }
 }

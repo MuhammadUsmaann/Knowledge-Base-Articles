@@ -68,11 +68,11 @@ namespace KBProject.Repositories
         {
             if (user.Id > 0)
             {
-                await _dBService.ExecuteQuery<bool>("update  [user] set FirstName =@FirstName, Lastname = @LastName, email= @Email, role=@role where Id = @Id", new { user.FirstName, user.LastName, user.Email, user.Role, user.Id });
+                await _dBService.ExecuteQuery<User>("update  [user] set FirstName =@FirstName, Lastname = @LastName, email= @Email, role=@role where Id = @Id", new { user.FirstName, user.LastName, user.Email, user.Role, user.Id });
             }
             else
             {
-                await _dBService.ExecuteQuery<bool>("insert into [user] (FirstName, Lastname , email , role)  values (@FirstName, @LastName,@Email, @role )", new { user.FirstName, user.LastName, user.Email, user.Role });
+                await _dBService.ExecuteQuery<User>("insert into [user] (FirstName, Lastname , email , role)  values (@FirstName, @LastName,@Email, @role )", new { user.FirstName, user.LastName, user.Email, user.Role });
             }
 
             return true;
@@ -104,6 +104,11 @@ namespace KBProject.Repositories
         public async Task<bool> AssociateUser(int id, int userid)
         {
             await _dBService.ExecuteQuery<bool>("insert into [AssociatedUsers] (userid , AssociatedUSerId, createDate, createdBy ) values (@Id, @userid, GETDATE(), 1)", new { id, userid });
+            return true;
+        }
+        public async Task<bool> DeleteAssociateUser(int id, int userid)
+        {
+            await _dBService.ExecuteQuery<bool>("delete from [AssociatedUsers] where userid = @userid and AssociatedUSerId = @id", new { userid, id });
             return true;
         }
     }

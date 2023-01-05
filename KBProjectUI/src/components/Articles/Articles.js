@@ -3,7 +3,7 @@ import Ckeditor from '../common/ckeditor';
 import Tags from '@yaireo/tagify/dist/react.tagify';
 import "@yaireo/tagify/dist/tagify.css";
 import { API_ROUTES, APP_ROUTES } from '../../lib/constants';
-import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+import ReactHtmlParser from 'react-html-parser';
 import Moment from 'react-moment';
 import { SendGetRequest, SendPostRequest } from '../../lib/common';
 
@@ -34,7 +34,7 @@ class Articles extends Component {
 	}
 	handleSearchTextOnChange = async (event) => {
 
-		if (event != null && event != undefined) {
+		if (event !== null && event !== undefined) {
 			this.setState({
 				showResult: this.state.datalist.filter(employee => {
 					return employee.Title.toLowerCase().includes(event.target.value.toLowerCase().trim())
@@ -58,7 +58,7 @@ class Articles extends Component {
 	handleTagChange = async (event) => {
 		let tags = "";
 		if (event.detail.tagify.value.length > 0) {
-			if (event.detail.tagify.value.length == 1) {
+			if (event.detail.tagify.value.length === 1) {
 				tags = event.detail.tagify.value[0].value;
 			}
 			else {
@@ -112,13 +112,17 @@ class Articles extends Component {
 
 	async LoadArticlesList() {
 
-		const response = await SendGetRequest(API_ROUTES.GET_ARTICLES);
+		const response = await SendPostRequest(API_ROUTES.GET_ARTICLES,{
+			SearchText: "",
+			Tags: ""
+		});
 
 		if (response?.authenticated) {
 			this.props.router.navigate(APP_ROUTES.SIGN_IN)
 			return;
 		}
 		else {
+			debugger
 			this.setState({
 				datalist: response,
 				showResult: response,
@@ -247,8 +251,7 @@ class Articles extends Component {
 														</tr>
 													</thead>
 													<tbody>
-														{
-															this.state.showResult?.map((obj, index) => {
+														{this.state.showResult?.map((obj, index) => {
 																return (
 																	<tr key={index}>
 																		<td>

@@ -44,7 +44,7 @@ namespace KBProject.Controllers
         [Route("SaveArticle")]
         public async Task<ResponseObject<bool>> SaveArticle(Article article)
         {
-            var result = await _articleRepository.SaveArticle(article, 3);
+            var result = await _articleRepository.SaveArticle(article, CurrentUserID);
 
             if (!result)
                 return new ResponseObject<bool> { Message = "No article Found!", Result = result, Success = false };

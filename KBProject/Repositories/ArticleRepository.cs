@@ -35,7 +35,7 @@ namespace KBProject.Repositories
                 var ss  = searchArticleRequest.Tags.Split(',');
                 foreach( var ss2 in ss)
                 {
-                    tags += "OR a.Tags like '%" + ss2 +"% ";
+                    tags += "OR a.Tags like '%" + ss2 +"%' ";
                 }
                 sql += tags;
             }
@@ -52,8 +52,9 @@ namespace KBProject.Repositories
                 if (associatedUser != null && associatedUser.Count > 0)
                 {
                     var users = string.Join(", ", associatedUser.Select(a => a.Id).ToArray());
+
+                    sql += " and a.CreatedBy in (" + users + ")";
                 }
-                sql += " and a.CreatedBy in (" + currentUser + ")";
             }
 
             articles = await _dBService.ExecuteQuery<Article>(sql);

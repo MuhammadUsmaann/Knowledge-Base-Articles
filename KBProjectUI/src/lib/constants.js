@@ -7,6 +7,7 @@ export const API_ROUTES = {
   GET_SME_USERS: `${API_URL}user/GetSMEUser`,
   DELETE_USER : `${API_URL}user/DeleteUser`,
   ASSOCIATE_USER : `${API_URL}user/AssociateUser`,
+  DELETE_ASSOCIATE_USER : `${API_URL}user/DeleteAssociateUser`,
   
 
   SAVE_ARTICLE: `${API_URL}Article/SaveArticle`,

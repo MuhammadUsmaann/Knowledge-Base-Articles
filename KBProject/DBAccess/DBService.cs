@@ -86,7 +86,7 @@ namespace KBProject.DBAccess
         {
             try
             {
-                var result = await SqlMapper.QueryAsync<TResult>(Connection, spName, param, _transaction);
+                var result = SqlMapper.Query<TResult>(Connection, spName, param, _transaction);
                 return result;
             }
             catch (Exception ee)

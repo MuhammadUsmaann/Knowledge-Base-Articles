@@ -1,30 +1,35 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import { removeTokenInLocalStorage, withRouter } from '../../lib/common';
+import { getUserName, getUserRole, removeTokenInLocalStorage, withRouter } from '../../lib/common';
 import { APP_ROUTES } from '../../lib/constants';
 
 
 class Header extends Component {
-	
-	render() {
-		const { fixNavbar, darkHeader } = this.props;
 
-		const handleLogout = async () => {
-			try {
-				removeTokenInLocalStorage();
-				this.props.router.navigate(APP_ROUTES.SIGN_IN)
-			}
-			catch (err) {
-				
-			}
-		};
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			Name: getUserName(),
+			Role: getUserRole()
+		}
+	}
+	handleLogout = async () => {
+		try {
+			removeTokenInLocalStorage();
+			this.props.router.navigate(APP_ROUTES.SIGN_IN)
+		}
+		catch (err) {
+
+		}
+	};
+	render() {
 
 		return (
 			<>
 				<div
 					id="page_top"
-					// className={isFixNavbar ? "sticky-top" : "" + this.props.dataFromParent === 'dark' ? 'section-body top_dark' : 'section-body'}
-					className={`section-body ${fixNavbar ? "sticky-top" : ""} ${darkHeader ? "top_dark" : ""}`}
+					className={`section-body`}
 				>
 					<div className="container-fluid">
 						<div className="page-header justify-content-between justify-content-sm-start position-relative	">
@@ -44,23 +49,22 @@ class Header extends Component {
 										<li className="nav-item">
 											<NavLink to="/" class="nav-link"> <i class="dropdown-icon icon-home"></i>  Home</NavLink>
 										</li>
-										<li className="nav-item">
-											<NavLink to="/users" class="nav-link"> <i class="dropdown-icon icon-user"></i> Users</NavLink>
-										</li>
-										<li className="nav-item">
-											<NavLink to="/articles" class="nav-link"> <i class="dropdown-icon icon-briefcase"></i>  Articles</NavLink>
-										</li>
-										<li className="nav-item d-block d-sm-none">
-											<NavLink to="/profile" className="">
-												<i className="dropdown-icon fe fe-user" /> Profile
-											</NavLink>										</li>
-										<li className="nav-item d-block d-sm-none">
-											<span onClick={handleLogout} className="">
-												<i className="dropdown-icon fe fe-log-out" /> Sign out
-											</span>										</li>
-									</ul>
-									<ul className="nav nav-pills">
+										{(this.state.Role === "SME" || this.state.Role === "ADMIN") &&
+											<li className="nav-item">
+												<NavLink to="/articles" class="nav-link"> <i class="dropdown-icon icon-briefcase"></i>  Articles</NavLink>
+											</li>
+										}
+										{this.state.Role === "ADMIN" &&
+											<li className="nav-item">
+												<NavLink to="/users" class="nav-link"> <i class="dropdown-icon icon-user"></i> Users</NavLink>
+											</li>
+										}
 
+										<li className="nav-item d-block d-sm-none">
+											<span onClick={this.handleLogout} className="">
+												<i className="dropdown-icon fe fe-log-out" /> Sign out
+											</span>
+										</li>
 									</ul>
 								</div>
 							</nav>
@@ -72,13 +76,10 @@ class Header extends Component {
 											className="nav-link icon btn btn-default btn-icon ml-1"
 											data-toggle="dropdown"
 										>
-											<i className="fa fa-user" />
+											<i className="fa fa-user" /> {this.state.Name}
 										</a>
 										<div className="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-											<NavLink to="/profile" className="dropdown-item">
-												<i className="dropdown-icon fe fe-user" /> Profile
-											</NavLink>
-											<span onClick={handleLogout} className="dropdown-item">
+											<span onClick={this.handleLogout} className="dropdown-item">
 												<i className="dropdown-icon fe fe-log-out" /> Sign out
 											</span>
 										</div>

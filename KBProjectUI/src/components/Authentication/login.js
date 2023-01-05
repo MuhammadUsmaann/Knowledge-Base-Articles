@@ -1,9 +1,8 @@
-import React, { Component, useState } from 'react';
-import { Link, Navigate } from 'react-router-dom';
-import { useNavigation } from 'react-router'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { API_ROUTES, APP_ROUTES } from '../../lib/constants';
-import { getTokenFromLocalStorage, storeTokenInLocalStorage, withRouter } from '../../lib/common';
+import { getTokenFromLocalStorage,  setUserName, setUserRole, storeTokenInLocalStorage, withRouter } from '../../lib/common';
 
 class Login extends Component {
 
@@ -34,7 +33,7 @@ class Login extends Component {
 
 		const signIn = async () => {
 			try {
-				this.state.isLoading = true;
+				
 				const response = await axios({
 					method: 'post',
 					url: API_ROUTES.SIGN_IN,
@@ -48,6 +47,10 @@ class Login extends Component {
 					return;
 				}
 				storeTokenInLocalStorage(response?.data?.Result.Token);
+				
+				setUserName(response?.data?.Result.Name);
+				setUserRole(response?.data?.Result.Role);
+
 				this.props.router.navigate(APP_ROUTES.DASHBOARD)
 			}
 			catch (err) {
@@ -106,7 +109,7 @@ class Login extends Component {
 							</label>
 						</div>
 						<div className="form-footer">
-							<a className="btn btn-primary btn-block" onClick={signIn}>
+							<a href="javascript:void(0);" className="btn btn-primary btn-block" onClick={signIn}>
 								Click to login
 							</a>
 						</div>

@@ -33,7 +33,7 @@ class Home extends Component {
 	handleTagChange = async (event) => {
 		let tags = "";
 		if (event.detail.tagify.value.length > 0) {
-			if (event.detail.tagify.value.length == 1) {
+			if (event.detail.tagify.value.length === 1) {
 				tags = event.detail.tagify.value[0].value;
 			}
 			else {
@@ -101,17 +101,6 @@ class Home extends Component {
 														autoFocus={true}
 														{...this.state.tags}
 														onChange={this.handleTagChange}
-													// onEditInput={() => console.log("onEditInput")}
-													// onEditBeforeUpdate={() => console.log`onEditBeforeUpdate`}
-													// onEditUpdated={() => console.log("onEditUpdated")}
-													// onEditStart={() => console.log("onEditStart")}
-													// onEditKeydown={() => console.log("onEditKeydown")}
-													// onDropdownShow={() => console.log("onDropdownShow")}
-													// onDropdownHide={() => console.log("onDropdownHide")}
-													// onDropdownSelect={() => console.log("onDropdownSelect")}
-													// onDropdownScroll={() => console.log("onDropdownScroll")}
-													// onDropdownNoMatch={() => console.log("onDropdownNoMatch")}
-													// onDropdownUpdated={() => console.log("onDropdownUpdated")}
 													/>
 												</div>
 											</div>
@@ -143,8 +132,6 @@ class Home extends Component {
 		)
 	}
 }
-const mapStateToProps = state => ({
-	fixNavbar: state.settings.isFixNavbar
-})
+
 
 export default withRouter(Home);

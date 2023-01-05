@@ -28,6 +28,22 @@ export function storeTokenInLocalStorage(token) {
   localStorage.setItem('token', token);
 }
 
+export function setUserName(token) {
+  localStorage.setItem('username', token);
+}
+
+export function getUserName() {
+  return localStorage.getItem('username');
+}
+
+export function setUserRole(token) {
+  localStorage.setItem('userrole', token);
+}
+
+export function getUserRole() {
+  return localStorage.getItem('userrole');
+}
+
 export function removeTokenInLocalStorage() {
   localStorage.removeItem('token');
 }

@@ -58,7 +58,7 @@ namespace KBProject.Controllers
             if (users == null)
                 return new ResponseObject<User> { Message = "No User Found!", Result = null, Success = false };
 
-            if(users.Role == "user")
+            if(users.Role == "USER")
             {
                 users.AssociatedUsers = await _userRepository.GetAssociatedUsers(id);
             }
@@ -78,6 +78,19 @@ namespace KBProject.Controllers
             return new ResponseObject<bool> { Message = "Successfully logged in.", Success = true, Result = users };
 
         }
+        [HttpGet]
+        [Route("DeleteAssociateUser")]
+        public async Task<ResponseObject<bool>> DeleteAssociateUser(int id, int userid)
+        {
+            var users = await _userRepository.DeleteAssociateUser(id, userid);
+
+            if (users == true)
+                return new ResponseObject<bool>  { Message = "No User Found!", Result = true, Success = false };
+
+            return new ResponseObject<bool> { Message = "Successfully logged in.", Success = true, Result = users };
+
+        }
+        
         [HttpGet]
         [Route("GetSMEUser")]
         public async Task<ResponseObject<List<AssociatedUser>>> GetSMEUser(int id)

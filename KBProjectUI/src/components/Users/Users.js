@@ -20,7 +20,8 @@ class Users extends Component {
 			users: [],
 			showResult: [],
 			associatedUsers: [],
-			smeUsers: []
+			smeUsers: [],
+			isOpened:false
 
 		}
 	}
@@ -122,9 +123,14 @@ class Users extends Component {
 		await this.saveUser();
 		this.closeUserDetail();
 		this.LoadUsersList();
+		
 	}
 	closeUserDetail = async () => {
 		document.getElementById("user-list-tab").click();
+		this.handleChangeTabs();
+		this.setState({
+			isOpened:false
+		});
 	}
 	saveUser = async () => {
 		try {
@@ -152,6 +158,20 @@ class Users extends Component {
 			//setIsLoading(false);
 		}
 	};
+	handleDeleteAssociateUser = async(id)=>{
+		const response = await SendGetRequest(API_ROUTES.DELETE_ASSOCIATE_USER + "?id=" + id + "&userid=" + this.state.id);
+
+		if (response?.authenticated) {
+			this.props.router.navigate(APP_ROUTES.SIGN_IN)
+			return;
+		}
+		this.setState({
+			associatedUsers: this.state.associatedUsers.filter(obj => {
+				return obj.Id !== id;
+			})
+		})
+		
+	}
 	LoadUserData = async (event) => {
 		try {
 			let id = event.target.id;
@@ -173,9 +193,13 @@ class Users extends Component {
 					mobileNo: response.MobileNo,
 					role: response.Role,
 					id: response.Id,
-					associatedUsers: response.AssociatedUsers
+					associatedUsers: response.AssociatedUsers ?? [],
+					isOpened : true
 				})
-				document.getElementById("user-tab").click();
+				setTimeout(function(){
+					document.getElementById("user-tab").click();
+				}, 100)
+				
 			}
 		}
 		catch (err) {
@@ -200,16 +224,19 @@ class Users extends Component {
 											id="user-list-tab"
 											data-toggle="tab"
 											href="#user-list"
-											onClick={this.handleChangeTabs}
+											// onClick={this.handleChangeTabs}
 										>
 											List
 										</a>
 									</li>
-									<li className="nav-item">
-										<a className="nav-link" id="user-tab" data-toggle="tab" href="#user-add">
-											Add New
-										</a>
-									</li>
+									{this.state.isOpened === true &&
+										<li className="nav-item">
+											<a className="nav-link" id="user-tab" data-toggle="tab" href="#user-add">
+												Edit New
+											</a>
+										</li>
+									}
+									
 								</ul>
 
 							</div>
@@ -309,8 +336,9 @@ class Users extends Component {
 															type="text"
 															className="form-control"
 															placeholder="First Name *"
-															onChange={this.handleFirstNameChange}
+															// onChange={this.handleFirstNameChange}
 															value={this.state.firstName}
+															disabled
 														/>
 													</div>
 												</div>
@@ -320,7 +348,8 @@ class Users extends Component {
 															type="text"
 															className="form-control"
 															placeholder="Last Name"
-															onChange={this.handleLastNameChange}
+															// onChange={this.handleLastNameChange}
+															disabled
 															value={this.state.lastName}
 														/>
 													</div>
@@ -331,12 +360,13 @@ class Users extends Component {
 															type="text"
 															className="form-control"
 															placeholder="Email ID *"
-															onChange={this.handleEmailChange}
+															// onChange={this.handleEmailChange}
+															disabled
 															value={this.state.email}
 														/>
 													</div>
 												</div>
-												<div className="col-md-4 col-sm-12">
+												{/* <div className="col-md-4 col-sm-12">
 													<div className="form-group">
 														<input
 															type="text"
@@ -346,18 +376,19 @@ class Users extends Component {
 															value={this.state.mobileNo}
 														/>
 													</div>
-												</div>
+												</div> */}
 												<div className="col-md-4 col-sm-12">
 													<div className="form-group">
 														<select className="form-control show-tick"
-															onChange={this.handleRoleChange} value={this.state.role}>
+															// onChange={this.handleRoleChange} 
+															value={this.state.role} disabled>
 															<option value="">Select Role Type</option>
 															<option value="SME">SME</option>
-															<option value="user">User</option>
+															<option value="USER">User</option>
 														</select>
 													</div>
 												</div>
-												{this.state.role === "user" &&
+												{this.state.role === "USER" &&
 													<div className="col-12">
 														<hr className="mt-4" />
 														<div class="row col-12 mt-2" style={{ display: 'block' }}>
@@ -385,7 +416,17 @@ class Users extends Component {
 																				<td><span>{auser.Email}</span></td>
 																				<td>{auser.Count}</td>
 
-																				<td />
+																				<td >
+																				<button
+																					type="button"
+																					className="btn btn-icon js-sweetalert"
+																					title="Delete"
+																					data-type="confirm"
+																					onClick={() => this.handleDeleteAssociateUser(auser.Id)}
+																				>
+																					<i className="fa fa-trash-o text-danger" />
+																				</button>
+																				</td>
 																			</tr>
 																		)
 																	}
@@ -395,24 +436,25 @@ class Users extends Component {
 																</tbody>
 															</table>
 														</div>
-														<div class="row col-12 mt-5">
-															<button type="button" className="btn btn-primary" onClick={this.saveUser}>
-																Save
-															</button>
-															<button type="button" className="btn btn-primary ml-3" onClick={this.saveUserAndClose}>
-																Save & Close
-															</button>
-															<button
-																type="button"
-																className="btn btn-secondary ml-2"
-																onClick={this.closeUserDetail}
-															>
-																CLOSE
-															</button>
-														</div>
+
 
 													</div>
 												}
+												<div class="row col-12 mt-5">
+													<button type="button" className="btn btn-primary" onClick={this.saveUser}>
+														Save
+													</button>
+													<button type="button" className="btn btn-primary ml-3" onClick={this.saveUserAndClose}>
+														Save & Close
+													</button>
+													<button
+														type="button"
+														className="btn btn-secondary ml-2"
+														onClick={this.closeUserDetail}
+													>
+														CLOSE
+													</button>
+												</div>
 											</div>
 										</div>
 									</div>
