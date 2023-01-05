@@ -27,20 +27,19 @@ namespace KBProject.Repositories
         {
             var articles = new List<Article>();
             string sql = "select a.*, u.FirstName + ' ' + u.LastName CreatedByName from [Articles]  a  join [user] u on u.Id=a.CreatedBy where (a.Title like '%" + searchArticleRequest.SearchText + "%' " +
-                        " OR a.[Description] like '%" + searchArticleRequest.SearchText + "%'  ";
+                        " OR a.[Description] like '%" + searchArticleRequest.SearchText + "%'  )";
 
             if(!string.IsNullOrEmpty(searchArticleRequest.Tags))
             {
-                var tags = "";
+                var tags = " AND (";
                 var ss  = searchArticleRequest.Tags.Split(',');
                 foreach( var ss2 in ss)
                 {
-                    tags += "OR a.Tags like '%" + ss2 +"%' ";
+                    tags += " a.Tags like '%" + ss2 +"%' OR";
                 }
-                sql += tags;
-            }
 
-            sql += " )";
+                sql += tags.Substring(0, tags.Length - 2) + " )";
+            }
 
             if (role == "SME")
             {
@@ -55,6 +54,8 @@ namespace KBProject.Repositories
 
                     sql += " and a.CreatedBy in (" + users + ")";
                 }
+                else
+                    sql += " and a.CreatedBy = 0";
             }
 
             articles = await _dBService.ExecuteQuery<Article>(sql);

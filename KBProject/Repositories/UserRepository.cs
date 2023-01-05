@@ -37,7 +37,7 @@ namespace KBProject.Repositories
 
         public async Task<List<User>> GetAllUser()
         {
-            var users = await _dBService.ExecuteQuery<User>("select * from [user]");
+            var users = await _dBService.ExecuteQuery<User>("select * from [user] where role <> 'ADMIN'");
             return users;
         }
 
