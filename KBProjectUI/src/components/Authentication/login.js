@@ -90,9 +90,6 @@ class Login extends Component {
 						<div className="form-group">
 							<label className="form-label">
 								Password
-								<Link className="float-right small" to="/forgotpassword">
-									I forgot password
-								</Link>
 							</label>
 							<input
 								type="password"
@@ -102,12 +99,7 @@ class Login extends Component {
 								onChange={this.handlePasswordChange}
 							/>
 						</div>
-						<div className="form-group">
-							<label className="custom-control custom-checkbox">
-								<input type="checkbox" className="custom-control-input" />
-								<span className="custom-control-label">Remember me</span>
-							</label>
-						</div>
+						
 						<div className="form-footer">
 							<a href="javascript:void(0);" className="btn btn-primary btn-block" onClick={signIn}>
 								Click to login

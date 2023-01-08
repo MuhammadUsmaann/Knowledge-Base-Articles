@@ -26,24 +26,82 @@ namespace KBProject.Repositories
         public async Task<List<Article>> GetArticles(SearchArticleRequest searchArticleRequest, int currentUser, string role)
         {
             var articles = new List<Article>();
-            string sql = "select a.*, u.FirstName + ' ' + u.LastName CreatedByName from [Articles]  a  join [user] u on u.Id=a.CreatedBy where (a.Title like '%" + searchArticleRequest.SearchText + "%' " +
-                        " OR a.[Description] like '%" + searchArticleRequest.SearchText + "%'  )";
 
-            if(!string.IsNullOrEmpty(searchArticleRequest.Tags))
+            string sqlNew = "SELECT e.* " +
+                            "from dbo.Articles AS e";
+                            //"containstable(dbo.Articles, [Description], 'Horse') as A" +
+                            //"--,containstable(dbo.Articles, [Title], '') as B" +
+                            //" where A.[KEY] = e.Id " +
+                            //" AND B.[KEY] = e.Id";
+
+            string sqlWhere = "";
+            string sqlFrom = "";
+
+            if (!string.IsNullOrEmpty(searchArticleRequest.Title))
             {
-                var tags = " AND (";
-                var ss  = searchArticleRequest.Tags.Split(',');
-                foreach( var ss2 in ss)
+                var titleArray = searchArticleRequest.Title.Split(" ");
+                foreach (var item in titleArray)
                 {
-                    tags += " a.Tags like '%" + ss2 +"%' OR";
-                }
+                    if(!string.IsNullOrEmpty(item))
+                    {
+                        sqlFrom += " containstable(dbo.Articles, [Title], '" + item + "') as Articles_" + item + ",";
+                        sqlWhere += " Articles_" + item + ".[KEY] = e.Id AND";
+                    }
+                } 
 
-                sql += tags.Substring(0, tags.Length - 2) + " )";
             }
+            if (!string.IsNullOrEmpty(searchArticleRequest.SearchText))
+            {
+                var desciptionArray = searchArticleRequest.SearchText.Split(" ");
+                foreach (var item in desciptionArray)
+                {
+                    if (!string.IsNullOrEmpty(item))
+                    {
+                        sqlFrom += " containstable(dbo.Articles, [Description], '" + item + "') as Articles_" + item + ",";
+                        sqlWhere += " Articles_" + item + ".[KEY] = e.Id AND";
+                    }
+                }
+            }
+            if (!string.IsNullOrEmpty(searchArticleRequest.Tags))
+            {
+                var tagsArray = searchArticleRequest.Tags.Split(" ");
+                foreach (var item in tagsArray)
+                {
+                    if (!string.IsNullOrEmpty(item))
+                    {
+                        sqlFrom += " containstable(dbo.Articles, [Tags], '" + item + "') as Articles_" + item + ",";
+                        sqlWhere += " Articles_" + item + ".[KEY] = e.Id AND";
+                    }
+                }
+            }
+
+            if(!string.IsNullOrEmpty(sqlFrom))
+            {
+                sqlNew += ", " + sqlFrom.Substring(0, sqlFrom.Length - 1);
+            }
+            if (!string.IsNullOrEmpty(sqlWhere))
+            {
+                sqlNew += " where " + sqlWhere.Substring(0, sqlWhere.Length - 3);
+            }
+
+            //string sql = "select a.*, u.FirstName + ' ' + u.LastName CreatedByName from [Articles]  a  join [user] u on u.Id=a.CreatedBy where (a.Title like '%" + searchArticleRequest.SearchText + "%' " +
+            //            " OR a.[Description] like '%" + searchArticleRequest.SearchText + "%'  )";
+
+            //if (!string.IsNullOrEmpty(searchArticleRequest.Tags))
+            //{
+            //    var tags = " AND (";
+            //    var ss = searchArticleRequest.Tags.Split(',');
+            //    foreach (var ss2 in ss)
+            //    {
+            //        tags += " a.Tags like '%" + ss2 + "%' OR";
+            //    }
+
+            //    sql += tags.Substring(0, tags.Length - 2) + " )";
+            //}
 
             if (role == "SME")
             {
-                sql += " and a.CreatedBy = " + currentUser;
+                sqlNew += " and e.CreatedBy = " + currentUser;
             }
             else if (role == "USER")
             {
@@ -52,13 +110,13 @@ namespace KBProject.Repositories
                 {
                     var users = string.Join(", ", associatedUser.Select(a => a.Id).ToArray());
 
-                    sql += " and a.CreatedBy in (" + users + ")";
+                    sqlNew += " and e.CreatedBy in (" + users + ")";
                 }
                 else
-                    sql += " and a.CreatedBy = 0";
+                    sqlNew += " and e.CreatedBy = 0";
             }
 
-            articles = await _dBService.ExecuteQuery<Article>(sql);
+            articles = await _dBService.ExecuteQuery<Article>(sqlNew);
 
             return articles;
         }

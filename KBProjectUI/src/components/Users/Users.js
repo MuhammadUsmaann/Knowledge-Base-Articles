@@ -119,6 +119,9 @@ class Users extends Component {
 			associatedUsers: []
 		})
 	}
+	UserAdded = async()=>{
+		this.LoadData(this.state.id);
+	};
 	saveUserAndClose = async () => {
 		await this.saveUser();
 		this.closeUserDetail();
@@ -172,35 +175,39 @@ class Users extends Component {
 		})
 		
 	}
+
+	LoadData  = async(id)=>{
+		const response = await SendGetRequest(API_ROUTES.GET_USER + "?id=" + id);
+
+		if (response?.authenticated) {
+			this.props.router.navigate(APP_ROUTES.SIGN_IN)
+			return;
+		}
+		else {
+			this.setState({
+				firstName: response.FirstName,
+				lastName: response.LastName,
+				email: response.Email,
+				mobileNo: response.MobileNo,
+				role: response.Role,
+				id: response.Id,
+				associatedUsers: response.AssociatedUsers ?? [],
+				isOpened : true
+			})
+			setTimeout(function(){
+				document.getElementById("user-tab").click();
+			}, 100)
+			
+		}
+	}
+	
 	LoadUserData = async (event) => {
 		try {
 			let id = event.target.id;
 			if (event.target.tagName === "I") {
 				id = event.target.parentElement.id
 			}
-
-			const response = await SendGetRequest(API_ROUTES.GET_USER + "?id=" + id);
-
-			if (response?.authenticated) {
-				this.props.router.navigate(APP_ROUTES.SIGN_IN)
-				return;
-			}
-			else {
-				this.setState({
-					firstName: response.FirstName,
-					lastName: response.LastName,
-					email: response.Email,
-					mobileNo: response.MobileNo,
-					role: response.Role,
-					id: response.Id,
-					associatedUsers: response.AssociatedUsers ?? [],
-					isOpened : true
-				})
-				setTimeout(function(){
-					document.getElementById("user-tab").click();
-				}, 100)
-				
-			}
+			this.LoadData(id);
 		}
 		catch (err) {
 			console.log('Some error occured during signing in: ', err);
@@ -393,7 +400,7 @@ class Users extends Component {
 														<hr className="mt-4" />
 														<div class="row col-12 mt-2" style={{ display: 'block' }}>
 															<h6 class="pull-left">Module Permission</h6>
-															<AddUsers userid={this.state.id} />
+															<AddUsers userid={this.state.id} UserAdded = {this.UserAdded} />
 														</div>
 
 														<div className="table-responsive">

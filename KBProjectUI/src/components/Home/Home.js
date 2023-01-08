@@ -22,6 +22,7 @@ class Home extends Component {
 		this.state = {
 			tags: "",
 			searchText: "",
+			title: "",
 			showResult: []
 		}
 	}
@@ -53,17 +54,23 @@ class Home extends Component {
 			searchText: event.target.value
 		})
 	}
+	handleTitleTextChange = async (event) => {
+		this.setState({
+			title: event.target.value
+		})
+	}
 	async componentWillMount() {
 		this.LoadArticles();
 
 	}
 	LoadArticles = async () => {
 
-		const response = await SendPostRequest(API_ROUTES.GET_ARTICLES_HOME,  {
+		const response = await SendPostRequest(API_ROUTES.GET_ARTICLES_HOME, {
 			SearchText: this.state.searchText,
-			Tags: this.state.tags
+			Tags: this.state.tags,
+			Title: this.state.title
 		});
-		
+
 		if (response?.authenticated) {
 			this.props.router.navigate(APP_ROUTES.SIGN_IN)
 			return;
@@ -88,12 +95,17 @@ class Home extends Component {
 								<div className="card">
 									<div className="card-body">
 										<div className="row">
-											<div className="col-lg-5 col-md-4 col-sm-6">
+											<div className="col-lg-4 col-md-4 col-sm-6">
 												<div className="input-group">
-													<input type="text" className="form-control" value={this.state.searchText} onChange={this.handleSearchTextChange} placeholder="Search" />
+													<input type="text" className="form-control" value={this.state.title} onChange={this.handleTitleTextChange} placeholder="Title" />
 												</div>
 											</div>
-											<div className="col-lg-6 col-md-6 col-sm-6">
+											<div className="col-lg-4 col-md-4 col-sm-6">
+												<div className="input-group">
+													<input type="text" className="form-control" value={this.state.searchText} onChange={this.handleSearchTextChange} placeholder="Desciption" />
+												</div>
+											</div>
+											<div className="col-lg-4 col-md-4 col-sm-6">
 												<div className="input-group">
 													<Tags
 														value={this.state.tags}

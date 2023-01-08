@@ -8,14 +8,15 @@ class AddUsers extends Component {
 
     constructor(props) {
         super(props);
+        
         this.setUserId = this.setUserId.bind(this);
-
         this.state = {
             selectedUsers: [],
             smeUsers: [],
             showResult: [],
             id: this.props.userid
         }
+        this.LoadUserDetailAgain = this.props.UserAdded;
     }
     setUserId(id) {
         this.setState({
@@ -24,6 +25,10 @@ class AddUsers extends Component {
     }
     async componentWillMount() {
         //this.LoadSMEUsersList();
+
+    }
+   
+    async LoadUserDetailAgain(){
 
     }
     LoadSMEUsersList = async () => {
@@ -48,8 +53,9 @@ class AddUsers extends Component {
             return;
         }
         else {
+            this.LoadUserDetailAgain()
             this.setState({
-                users: this.state.smeUsers.filter(obj => {
+                smeUsers: this.state.smeUsers.filter(obj => {
                     return obj.Id !== parseInt(event.target.id);
                 })
             });
