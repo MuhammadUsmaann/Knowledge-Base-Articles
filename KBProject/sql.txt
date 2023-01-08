@@ -1,0 +1,10 @@
+﻿DROP FULLTEXT INDEX ON dbo.Articles   
+CREATE FULLTEXT INDEX ON  dbo.Articles 
+(
+    [Title],[Description],tags Language 0
+) 
+KEY INDEX PK_Articles on FullTextCatalog
+WITH 
+    CHANGE_TRACKING  AUTO ,
+    STOPLIST=OFF
+;
